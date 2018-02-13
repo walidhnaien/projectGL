@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Jobowners list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Activitysector</th>
+                <th>Socialraison</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for jobowner in jobowners %}
+            <tr>
+                <td><a href="{{ path('jobowner_show', { 'id': jobowner.id }) }}">{{ jobowner.id }}</a></td>
+                <td>{{ jobowner.activitySector }}</td>
+                <td>{{ jobowner.socialRaison }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('jobowner_show', { 'id': jobowner.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('jobowner_edit', { 'id': jobowner.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('jobowner_new') }}">Create a new jobowner</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,4 @@
+app_jobowner:
+    resource: "@AppBundle/Resources/config/routing/jobowner.yml"
+    prefix:   /jobowner
+

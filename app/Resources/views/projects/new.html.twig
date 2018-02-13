@@ -1,0 +1,72 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <h1>Project creation</h1>
+
+    {{ form_start(form) }}
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.projectName) }}
+            {{ form_errors(form.projectName) }}
+            {{ form_widget(form.projectName, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(form.activityarea) }}
+            {{ form_errors(form.activityarea) }}
+            {{ form_widget(form.activityarea, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.projectdescription) }}
+            {{ form_errors(form.projectdescription) }}
+            {{ form_widget(form.projectdescription, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(form.startdate) }}
+            {{ form_errors(form.startdate) }}
+            {{ form_widget(form.startdate, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.enddate) }}
+            {{ form_errors(form.enddate) }}
+            {{ form_widget(form.enddate, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(form.payment) }}
+            {{ form_errors(form.payment) }}
+            {{ form_widget(form.payment, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-6">
+            {{ form_label(form.experiencelevel) }}
+            {{ form_errors(form.experiencelevel) }}
+            {{ form_widget(form.experiencelevel, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.requiredskills) }}
+            {{ form_errors(form.requiredskills) }}
+            {{ form_widget(form.requiredskills, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add </button>
+        </div>
+
+    </div>
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a class="btn btn-default" href="{{ path('projects_index') }}"><i class="fa fa-list"></i> Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <h1>Jobowner creation</h1>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            <a class="btn btn-default" href="{{ path('jobowner_index') }}"><i class="fa fa-list"></i>  Back to the list</a>
+        </div>
+    </div>
+    {{ form_start(form) }}
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.firstname) }}
+            {{ form_errors(form.firstname) }}
+            {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(form.lastname) }}
+            {{ form_errors(form.lastname) }}
+            {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.email) }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(form.mobile) }}
+            {{ form_errors(form.mobile) }}
+            {{ form_widget(form.mobile, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.activitySector) }}
+            {{ form_errors(form.activitySector) }}
+            {{ form_widget(form.activitySector, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(form.socialRaison) }}
+            {{ form_errors(form.socialRaison) }}
+            {{ form_widget(form.socialRaison, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-6">
+            {{ form_label(form.address) }}
+            {{ form_errors(form.address) }}
+            {{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.username) }}
+            {{ form_errors(form.username) }}
+            {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(form.plainPassword.first) }}
+            {{ form_errors(form.plainPassword.first) }}
+            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(form.plainPassword.second) }}
+            {{ form_errors(form.plainPassword.second) }}
+            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add </button>
+        </div>
+
+    </div>
+
+    {{ form_end(form) }}
+
+
+{% endblock %}

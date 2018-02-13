@@ -1,0 +1,8 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+app_jobowner:
+    resource: "@AppBundle/Resources/config/routing/jobowner.yml"
+    prefix:   /jobowner
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

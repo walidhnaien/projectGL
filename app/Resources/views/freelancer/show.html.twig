@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Freelancer</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Skills</th>
+                <td>{{ freelancer.skills }}</td>
+            </tr>
+            <tr>
+                <th>Disponible</th>
+                <td>{{ freelancer.disponible }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ freelancer.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('freelancer_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('freelancer_edit', { 'id': freelancer.id }) }}">Edit</a>
+        </li>
+        <li>
+            <a href="{{ path('freelancer_edit', { 'id': freelancer.id }) }}">Sent a job offer</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
