@@ -78,12 +78,5 @@ class DefaultController extends Controller
 
         );
     }
-    /**
-     * @Route("/freelancer/home", name="homefree")
-     */
-    public function freeAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/free.html.twig');
-    }
+
 }

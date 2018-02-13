@@ -15,6 +15,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class JobownerController extends Controller
 {
     /**
+     * home jobowner entities.
+     *
+     * @Route("/home", name="jobowner_home")
+     */
+    public function homeAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $freelancers = $em->getRepository('AppBundle:Freelancer')->findAll();
+        $user = $this->getUser();
+
+        $jobs = $em->getRepository('AppBundle:Jobowner')->findBy(array("user"=>$user));
+        foreach ($jobs as $j){
+            $job = $j;
+        }
+        $ps = $em->getRepository('AppBundle:Projects')->findBy(array("jobowner"=>$j));
+        return $this->render('jobowner/home.html.twig', array(
+            'frees' => $freelancers,'job'=>$job,'projects'=>$ps
+        ));
+    }
+    /**
      * Lists all jobowner entities.
      *
      * @Route("/", name="jobowner_index")

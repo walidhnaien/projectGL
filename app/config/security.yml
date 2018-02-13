@@ -42,6 +42,7 @@ security:
             - { path: ^/freelancer/new, role: IS_AUTHENTICATED_ANONYMOUSLY}
             - { path: ^/jobowner/new, role: IS_AUTHENTICATED_ANONYMOUSLY}
             - { path: ^/freelancer/^, role: [ROLE_FREE,ROLE_ADMIN]}
-            - { path: ^/freelancer/, role: [ROLE_FREE,ROLE_ADMIN]}
+            - { path: ^/freelancer/, role: [ROLE_JOOW,ROLE_ADMIN,ROLE_FREE]}
+            - { path: ^/freelancer/home, role: [ROLE_FREE]}
             - { path: ^/jobowner/^, role: [ROLE_JOOW,ROLE_ADMIN]}
             - { path: ^/jobowner/, role: [ROLE_JOOW,ROLE_ADMIN]}

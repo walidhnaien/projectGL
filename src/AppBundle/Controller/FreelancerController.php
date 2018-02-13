@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Freelancer;
+use AppBundle\Entity\Jobowner;
+use AppBundle\Entity\Projects;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,6 +17,26 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FreelancerController extends Controller
 {
+    /**
+     * home  freelancer .
+     *
+     * @Route("/home", name="freelancer_home")
+     *
+     */
+    public function homeAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ps = $em->getRepository('AppBundle:Projects')->findAll();
+        /*
+        $free= new Freelancer();
+        $job = new Jobowner();
+        $form = $this->createForm('AppBundle\Form\FreelancerType', $free);
+        $form2 = $this->createForm('AppBundle\Form\JobownerType', $job);*/
+        return $this->render('freelancer/home.html.twig', array(
+            'projects' => $ps
+        ));
+    }
     /**
      * Lists all freelancer entities.
      *

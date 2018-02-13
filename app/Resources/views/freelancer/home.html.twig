@@ -1,0 +1,40 @@
+{% extends 'indexFront.html.twig' %}
+
+{% block body %}
+    <h1>Projects list</h1>
+
+    <table class="table table-condensed" >
+        <thead>
+        <tr>
+            <th>Projectname</th>
+            <th>Activityarea</th>
+            <th>Projectdescription</th>
+            <th>Startdate</th>
+            <th>Enddate</th>
+            <th>Payment</th>
+            <th>Experiencelevel</th>
+            <th>Requiredskills</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.projectName }}</td>
+                <td>{{ project.activityarea }}</td>
+                <td>{{ project.projectdescription }}</td>
+                <td>{% if project.startdate %}{{ project.startdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if project.enddate %}{{ project.enddate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ project.payment }}</td>
+                <td>{{ project.experiencelevel }}</td>
+                <td>{{ project.requiredskills }}</td>
+                <td>
+                    <a class="btn btn-default" href="{{ path('projects_show', { 'id': project.id }) }}"><i class="fa fa-list"></i> show</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock body %}

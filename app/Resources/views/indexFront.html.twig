@@ -38,11 +38,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="logo">
 							<h1><a href="index.html">Ingenuity</a></h1>
 						</div>  
-						<div class="header-right">   
-							<ul>
-								<li><a href="#myModal1" data-toggle="modal">Login</a></li>
-								<li><a href="#myModal2" data-toggle="modal">Register</a></li>  
-							</ul>
+						<div class="header-right">
+							{% if is_granted('ROLE_FREE') or is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
+								<ul>
+									<li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+								</ul>
+							{% else %}
+								<ul>
+									<li><a href="#myModal1" data-toggle="modal">Login</a></li>
+									<li><a href="#myModal2" data-toggle="modal">Register</a></li>
+								</ul>
+
+							{% endif %}
 							<div class="clearfix"> </div>  
 						</div>
 						<div class="menu"> 
@@ -84,7 +91,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<!-- //banner-address --> 
 		</div>
 	</div>
-	<!-- //banner -->
+    {% if is_granted('ROLE_FREE') or is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
+
+	{% else %}<!-- //banner -->
 	<!-- login modal -->
 	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
@@ -99,12 +108,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="col-md-6" style="text-align:center">
 								<h3>Espace Freelancer</h3>
 								<img src="{{ asset('bundles/app/front/web/images/free.jpg') }}" width="150px" height="150px"/>
-								<a class="btn btn-warning"  href="{{ path('freelancer_index') }}"><i class="fa fa-lock"></i>  Se connecter</a>
+								<a class="btn btn-warning"  href="{{ path('freelancer_home') }}"><i class="fa fa-lock"></i>  Se connecter</a>
 							</div>
 							<div class="col-md-6 " style="text-align:center">
 								<h3>Espace Jobowner</h3>
 								<img src="{{ asset('bundles/app/front/web/images/client.png')}} "  width="150px" height="150px"/>
-								<a class="btn btn-warning" href="{{ path('jobowner_index') }}"><i class="fa fa-lock"></i>  Se connecter</a>
+								<a class="btn btn-warning" href="{{ path('jobowner_home') }}"><i class="fa fa-lock"></i>  Se connecter</a>
 							</div>
 
 						</div>
@@ -293,17 +302,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
+	{% endif %}
 	<!-- //register modal -->	 
 	<!-- welcome -->
 	<div class="welcome"> 
 		<div class="container">
+            {% block box1 %}
 			<div class="col-md-7 welcome-w3lleft">
+
 				<h3 class="agileits-title">Welcome !</h3>
 				<h4>Cras porttitor imperdiet volutpat nulla malesuada lectus eros ut convallis felis consectetur ut </h4>
 				<p>Nulla ultricies nunc et lorem semper, quis accumsan dui aliquam aucibus sagittis placerat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas
 					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi non nibh nec enim sollicitudin interdum.tristique senectus et netus et malesuada fames ac turpis egestas 
-				</p>   
+				</p>
+
 			</div>  
 			<div class="col-md-5 welcome-w3lright">
 				<div class="welcome-grids">
@@ -330,14 +343,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 					<div class="clearfix"> </div>
 				</div>
-			</div> 
+			</div>
+            {% endblock box1 %}
 			<div class="clearfix"> </div>
 		</div> 
 	</div>
 	<!-- //welcome -->
 	<!-- features -->
 	<div class="features">
-		<div class="container"> 
+		<div class="container">
+
 			<div class="features-agileinfo">
 				<div class="col-md-4 col-sm-4 features-wthree-grids"> 
 					<h4>Best Designs</h4>
@@ -359,12 +374,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div> 
 				<div class="clerfix"> </div>
 			</div>
+
 		</div>
 	</div>
 	<!-- //features -->
 	<!-- team -->
 	<div class="team"> 
 		<div class="container">
+            {% block box2 %}
 			<div class="w3ls-title">
 				<h3 class="agileits-title">Our Team</h3>
 			</div>	
@@ -399,7 +416,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div id="demo1_main_image" class="col-md-8 col-xs-7 team-right"></div>
 				<div class="clearfix"> </div>
-			</div>     
+			</div>
+            {% endblock %}
 		</div>
 	</div>
 	<!-- //team --> 

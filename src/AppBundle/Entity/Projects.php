@@ -77,6 +77,29 @@ class Projects
      */
     private $requiredskills;
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Jobowner",inversedBy="id")
+     * @ORM\JoinColumn(name="jobowner",referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $jobowner;
+
+    /**
+     * @return mixed
+     */
+    public function getJobowner()
+    {
+        return $this->jobowner;
+    }
+
+    /**
+     * @param mixed $jobowner
+     */
+    public function setJobowner($jobowner)
+    {
+        $this->jobowner = $jobowner;
+    }
+
 
     /**
      * Get id
