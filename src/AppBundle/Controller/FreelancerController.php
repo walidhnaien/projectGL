@@ -118,6 +118,10 @@ class FreelancerController extends Controller
      */
     public function editAction(Request $request, Freelancer $freelancer)
     {
+        $user = $freelancer->getUser();
+        $freelancer->setEmail($user->getEmail());
+        $freelancer->setUsername($user->getUsername());
+        $freelancer->setPlainPassword($user->getPlainPassword());
         $deleteForm = $this->createDeleteForm($freelancer);
         $editForm = $this->createForm('AppBundle\Form\FreelancerType', $freelancer);
         $editForm->handleRequest($request);

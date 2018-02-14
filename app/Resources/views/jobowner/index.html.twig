@@ -6,18 +6,33 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Activitysector</th>
-                <th>Socialraison</th>
+
+                <th>Activity Area</th>
+                <th>Social reason</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Email</th>
+
+
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for jobowner in jobowners %}
             <tr>
-                <td><a href="{{ path('jobowner_show', { 'id': jobowner.id }) }}">{{ jobowner.id }}</a></td>
+               <!-- <td><a href="{{ path('jobowner_show', { 'id': jobowner.id }) }}">{{ jobowner.id }}</a></td>-->
                 <td>{{ jobowner.activitySector }}</td>
                 <td>{{ jobowner.socialRaison }}</td>
+                <td>{{ jobowner.firstname }}</td>
+                <td>{{ jobowner.lastname }}</td>
+                <td>{{ jobowner.address }}</td>
+                <td>{{ jobowner.mobile }}</td>
+                <td>{{ jobowner.user.email }}</td>
+
+
+
                 <td>
                     <ul>
                         <li>

@@ -12,7 +12,7 @@
                         <h3 class="agileits-title">My Projects</h3>
                     </div>
 
-                    <table class="table-striped">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>Projectname</th>
@@ -39,12 +39,12 @@
                                 <td>{{ project.requiredskills }}</td>
                                 <td>
                                     <ul>
-                                        <li>
-                                            <a class="btn btn-default" href="{{ path('projects_show', { 'id': project.id }) }}"><i class="fa fa-list"></i> show</a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-default"  href="{{ path('projects_edit', { 'id': project.id }) }}"><i class="fa fa-list"></i> edit</a>
-                                        </li>
+
+                                            <a class="btn btn-default" href="{{ path('projects_show', { 'id': project.id }) }}"> show</a>
+
+
+                                            <a class="btn btn-default"  href="{{ path('projects_edit', { 'id': project.id }) }}"> edit</a>
+
                                     </ul>
                                 </td>
                             </tr>
@@ -81,9 +81,7 @@
                         <td>{{ freelancer.disponible }}</td>
                         <td>
                             <ul>
-                                <li>
-                                    <a href="{{ path('freelancer_show', { 'id': freelancer.id }) }}">show</a>
-                                </li>
+                                <a class="btn btn-default" href="{{ path('freelancer_show', { 'id': freelancer.id }) }}" >show</a>
 
                             </ul>
                         </td>
