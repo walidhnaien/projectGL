@@ -71,6 +71,11 @@
                 <tr>
                     <th>Skills</th>
                     <th>Disponible</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -79,6 +84,11 @@
                     <tr>
                         <td>{{ freelancer.skills }}</td>
                         <td>{{ freelancer.disponible }}</td>
+                        <td>{{ freelancer.firstname }}</td>
+                        <td>{{ freelancer.lastname }}</td>
+                        <td>{{ freelancer.address }}</td>
+                        <td>{{ freelancer.mobile }}</td>
+                        <td>{{ freelancer.user.email }}</td>
                         <td>
                             <ul>
                                 <a class="btn btn-default" href="{{ path('freelancer_show', { 'id': freelancer.id }) }}" >show</a>

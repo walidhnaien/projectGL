@@ -36,7 +36,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="container">
 					<div class="header-w3lsrow">  
 						<div class="logo">
-							<h1><a href="index.html">Ingenuity</a></h1>
+							<h1><a href="index.html">Esprit</a></h1>
 						</div>  
 						<div class="header-right">
 							{% if is_granted('ROLE_FREE') or is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
@@ -76,7 +76,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="banner-w3lstext">
 				<div class="container">
 					<h6>Inventive Solutions</h6>
-					<h2>Loremipsum</h2>
+					<h2>FREELANCER</h2>
 				</div>  
 			</div>  
 			<!-- //banner-text --> 
@@ -306,8 +306,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	{% endif %}
 	<!-- //register modal -->	 
 	<!-- welcome -->
+
 	<div class="welcome"> 
 		<div class="container">
+			{% block body %}
             {% block box1 %}
 			<div class="col-md-7 welcome-w3lleft">
 
@@ -345,6 +347,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 			</div>
             {% endblock box1 %}
+            {% endblock body %}
 			<div class="clearfix"> </div>
 		</div> 
 	</div>
