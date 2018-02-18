@@ -73,6 +73,24 @@ class ProjectsController extends Controller
         ));
     }
 
+
+
+    /**
+     * Finds and displays a project entity.
+     *
+     * @Route("/freelancer/{id}", name="projects_show_freelancer")
+     * @Method("GET")
+     */
+    public function showProjectAction(Projects $project)
+    {
+        $deleteForm = $this->createDeleteForm($project);
+
+        return $this->render('projects/show_freelancer.html.twig', array(
+            'project' => $project,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
     /**
      * Displays a form to edit an existing project entity.
      *

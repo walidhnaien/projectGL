@@ -1,0 +1,56 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <h1>Project</h1>
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ project.id }}</td>
+            </tr>
+            <tr>
+                <th>Projectname</th>
+                <td>{{ project.projectName }}</td>
+            </tr>
+            <tr>
+                <th>Activityarea</th>
+                <td>{{ project.activityarea }}</td>
+            </tr>
+            <tr>
+                <th>Projectdescription</th>
+                <td>{{ project.projectdescription }}</td>
+            </tr>
+            <tr>
+                <th>Startdate</th>
+                <td>{% if project.startdate %}{{ project.startdate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Enddate</th>
+                <td>{% if project.enddate %}{{ project.enddate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Payment</th>
+                <td>{{ project.payment }}</td>
+            </tr>
+            <tr>
+                <th>Experiencelevel</th>
+                <td>{{ project.experiencelevel }}</td>
+            </tr>
+            <tr>
+                <th>Requiredskills</th>
+                <td>{{ project.requiredskills }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('projects_index') }}">Submit Candidature</a>
+        </li>
+        <li>
+            <a href="{{ path('homepage') }}">Back</a>
+        </li>
+        
+    </ul>
+{% endblock %}

@@ -7,25 +7,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Ingenuity a Corporate Category Bootstrap Responsive website Template | Home :: w3layouts</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Ingenuity Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	<title>Index</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Ingenuity Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link href="{{ asset('bundles/app/front/web/css/bootstrap.css') }}" type="text/css" rel="stylesheet" media="all">
-<link href="{{ asset('bundles/app/front/web/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
-<link href="{{ asset('bundles/app/front/web/css/font-awesome.css') }}" rel="stylesheet"> <!-- font-awesome icons -->
-<link rel="stylesheet" href="{{ asset('bundles/app/front/web/css/jquery.desoslide.css') }}">
-<!-- //Custom Theme files --> 
-<!-- js -->
-<script src="{{ asset('bundles/app/front/web/js/jquery-2.2.3.min.js') }}"></script>
-<!-- //js -->
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Custom Theme files -->
+	<link href="{{ asset('bundles/app/front/web/css/bootstrap.css') }}" type="text/css" rel="stylesheet" media="all">
+	<link href="{{ asset('bundles/app/front/web/css/style.css') }}" type="text/css" rel="stylesheet" media="all">
+	<link href="{{ asset('bundles/app/front/web/css/font-awesome.css') }}" rel="stylesheet"> <!-- font-awesome icons -->
+	<link rel="stylesheet" href="{{ asset('bundles/app/front/web/css/jquery.desoslide.css') }}">
+	<!-- //Custom Theme files --> 
+	<!-- js -->
+	<script src="{{ asset('bundles/app/front/web/js/jquery-2.2.3.min.js') }}"></script>
+	<!-- //js -->
 <!-- web-fonts
 <link href="//fonts.googleapis.com/css?family=Oxygen:300,400,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
- //web-fonts -->
+//web-fonts -->
 </head>
 <body> 
 	<!-- banner -->
@@ -91,354 +91,310 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<!-- //banner-address --> 
 		</div>
 	</div>
-    {% if is_granted('ROLE_FREE') or is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
+	{% if is_granted('ROLE_FREE') or is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
 
 	{% else %}<!-- //banner -->
-	<!-- login modal -->
-	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button>  
-				</div>
-				<div class="modal-body modal-body-sub"> 
-					<h3>Login Form !</h3>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="col-md-6" style="text-align:center">
-								<h3>Espace Freelancer</h3>
-								<img src="{{ asset('bundles/app/front/web/images/free.jpg') }}" width="150px" height="150px"/>
-								<a class="btn btn-warning"  href="{{ path('freelancer_home') }}"><i class="fa fa-lock"></i>  Se connecter</a>
-							</div>
-							<div class="col-md-6 " style="text-align:center">
-								<h3>Espace Jobowner</h3>
-								<img src="{{ asset('bundles/app/front/web/images/client.png')}} "  width="150px" height="150px"/>
-								<a class="btn btn-warning" href="{{ path('jobowner_home') }}"><i class="fa fa-lock"></i>  Se connecter</a>
-							</div>
-
-						</div>
+		<!-- login modal -->
+		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button>  
 					</div>
-
-				</div>
-			</div>
-		</div>
-	</div> 
-	<!-- //login modal -->	
-	<!-- register modal -->
-	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button> 
-				</div>
-				<div class="modal-body modal-body-sub"> 
-					<div class="modal_body_left modal_body_left1"> 
-						<h3>Register Now !</h3>
+					<div class="modal-body modal-body-sub"> 
+						<h3>Login Form !</h3>
 						<div class="row">
 							<div class="col-md-12">
-								<ul class="nav nav-tabs">
-									<li class="active"><a data-toggle="tab" href="#free">Freelancer</a></li>
-									<li><a data-toggle="tab" href="#job">JobOwner</a></li>
-								</ul>
-
-								<div class="tab-content col-md-12">
-									<div id="free" class="tab-pane fade in active">
-										<h3>Free</h3>
-                                        {{ form_start(form_free) }}
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.firstname) }}
-                                                {{ form_errors(form_free.firstname) }}
-                                                {{ form_widget(form_free.firstname, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.lastname) }}
-                                                {{ form_errors(form_free.lastname) }}
-                                                {{ form_widget(form_free.lastname, {'attr': {'class': 'form-control'}}) }}
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.email) }}
-                                                {{ form_errors(form_free.email) }}
-                                                {{ form_widget(form_free.email, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.disponible) }}
-                                                {{ form_errors(form_free.disponible) }}
-                                                {{ form_widget(form_free.disponible, {'attr': {'class': 'form-control'}}) }}
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-6">
-                                                {{ form_label(form_free.skills) }}
-                                                {{ form_errors(form_free.skills) }}
-                                                {{ form_widget(form_free.skills, {'attr': {'class': 'form-control'}}) }}
-											</div>
-
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-6">
-                                                {{ form_label(form_free.address) }}
-                                                {{ form_errors(form_free.address) }}
-                                                {{ form_widget(form_free.address, {'attr': {'class': 'form-control'}}) }}
-											</div>
-
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.mobile) }}
-                                                {{ form_errors(form_free.mobile) }}
-                                                {{ form_widget(form_free.mobile, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.username) }}
-                                                {{ form_errors(form_free.username) }}
-                                                {{ form_widget(form_free.username, {'attr': {'class': 'form-control'}}) }}
-											</div>
-
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.plainPassword.first) }}
-                                                {{ form_errors(form_free.plainPassword.first) }}
-                                                {{ form_widget(form_free.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_free.plainPassword.second) }}
-                                                {{ form_errors(form_free.plainPassword.second) }}
-                                                {{ form_widget(form_free.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-												<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add </button>
-											</div>
-
-										</div>
-                                        {{ form_end(form_free) }}
-									</div>
-									<div id="job" class="tab-pane fade">
-										<h3>Jobowner</h3>
-                                        {{ form_start(form_jb) }}
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.firstname) }}
-                                                {{ form_errors(form_jb.firstname) }}
-                                                {{ form_widget(form_jb.firstname, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.lastname) }}
-                                                {{ form_errors(form_jb.lastname) }}
-                                                {{ form_widget(form_jb.lastname, {'attr': {'class': 'form-control'}}) }}
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.email) }}
-                                                {{ form_errors(form_jb.email) }}
-                                                {{ form_widget(form_jb.email, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.mobile) }}
-                                                {{ form_errors(form_jb.mobile) }}
-                                                {{ form_widget(form_jb.mobile, {'attr': {'class': 'form-control'}}) }}
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.activitySector) }}
-                                                {{ form_errors(form_jb.activitySector) }}
-                                                {{ form_widget(form_jb.activitySector, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.socialRaison) }}
-                                                {{ form_errors(form_jb.socialRaison) }}
-                                                {{ form_widget(form_jb.socialRaison, {'attr': {'class': 'form-control'}}) }}
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-6">
-                                                {{ form_label(form_jb.address) }}
-                                                {{ form_errors(form_jb.address) }}
-                                                {{ form_widget(form_jb.address, {'attr': {'class': 'form-control'}}) }}
-											</div>
-
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.username) }}
-                                                {{ form_errors(form_jb.username) }}
-                                                {{ form_widget(form_jb.username, {'attr': {'class': 'form-control'}}) }}
-											</div>
-
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.plainPassword.first) }}
-                                                {{ form_errors(form_jb.plainPassword.first) }}
-                                                {{ form_widget(form_jb.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-											</div>
-											<div class="form-group col-md-3">
-                                                {{ form_label(form_jb.plainPassword.second) }}
-                                                {{ form_errors(form_jb.plainPassword.second) }}
-                                                {{ form_widget(form_jb.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group col-md-3">
-												<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add </button>
-											</div>
-
-										</div>
-
-                                        {{ form_end(form_jb) }}
-									</div>
-
+								<div class="col-md-6" style="text-align:center">
+									<h3>Espace Freelancer</h3>
+									<img src="{{ asset('bundles/app/front/web/images/free.jpg') }}" width="150px" height="150px"/>
+									<a class="btn btn-warning"  href="{{ path('freelancer_home') }}"><i class="fa fa-lock"></i>  Se connecter</a>
 								</div>
+								<div class="col-md-6 " style="text-align:center">
+									<h3>Espace Jobowner</h3>
+									<img src="{{ asset('bundles/app/front/web/images/client.png')}} "  width="150px" height="150px"/>
+									<a class="btn btn-warning" href="{{ path('jobowner_home') }}"><i class="fa fa-lock"></i>  Se connecter</a>
+								</div>
+
 							</div>
 						</div>
-					</div>  
+
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	{% endif %}
-	<!-- //register modal -->	 
-	<!-- welcome -->
-	<div class="welcome"> 
-		<div class="container">
-            {% block box1 %}
-			<div class="col-md-7 welcome-w3lleft">
-
-				<h3 class="agileits-title">Welcome !</h3>
-				<h4>Cras porttitor imperdiet volutpat nulla malesuada lectus eros ut convallis felis consectetur ut </h4>
-				<p>Nulla ultricies nunc et lorem semper, quis accumsan dui aliquam aucibus sagittis placerat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi non nibh nec enim sollicitudin interdum.tristique senectus et netus et malesuada fames ac turpis egestas 
-				</p>
-
-			</div>  
-			<div class="col-md-5 welcome-w3lright">
-				<div class="welcome-grids">
-					<div class="service-box">
-						<div class="agileits-wicon">
-							<i class="fa fa-clone" aria-hidden="true"></i>
-						</div>
-						<h5>Proin eget ipsum ultrices</h5> 
-					</div> 
-					<div class="clearfix"> </div>
-				</div>
-				<div class="welcome-grids">
-					<div class="col-md-6 col-sm-6 col-xs-6 service-box">
-						<div class="agileits-wicon">
-							<i class="fa fa-heart-o" aria-hidden="true"></i>
-						</div>
-						<h5>Proin eget ipsum ultrices</h5> 
-					</div>
-					<div class="col-md-6 col-sm-6 col-xs-6 service-box">
-						<div class="agileits-wicon">
-							<i class="fa fa-tv" aria-hidden="true"></i>
-						</div>
-						<h5>Proin eget ipsum ultrices</h5> 
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-            {% endblock box1 %}
-			<div class="clearfix"> </div>
 		</div> 
-	</div>
-	<!-- //welcome -->
-	<!-- features -->
-	<div class="features">
-		<div class="container">
+		<!-- //login modal -->	
+		<!-- register modal -->
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times;</button> 
+					</div>
+					<div class="modal-body modal-body-sub"> 
+						<div class="modal_body_left modal_body_left1"> 
+							<h3>Register Now !</h3>
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="nav nav-tabs">
+										<li class="active"><a data-toggle="tab" href="#free">Freelancer</a></li>
+										<li><a data-toggle="tab" href="#job">JobOwner</a></li>
+									</ul>
 
-			<div class="features-agileinfo">
-				<div class="col-md-4 col-sm-4 features-wthree-grids"> 
-					<h4>Best Designs</h4>
-					<p>Itaque earum rerum hic tenetur a sapiente delectus 
-						reiciendis maiores alias consequatur aut. Aenean nec purus ac orci finibus facilisis. </p> 
-					<h5 class="w3ls-featext">1</h5>
-				</div>
-				<div class="col-md-4 col-sm-4 features-wthree-grids"> 
-					<h4>Online Advisors</h4>
-					<p>Itaque earum rerum hic tenetur a sapiente delectus 
-						reiciendis maiores alias consequatur aut. Aenean nec purus ac orci finibus facilisis. </p>
-					<h5 class="w3ls-featext">2</h5>
-				</div>
-				<div class="col-md-4 col-sm-4 features-wthree-grids"> 
-					<h4>New Technologies</h4>
-					<p>Itaque earum rerum hic tenetur a sapiente delectus 
-						reiciendis maiores alias consequatur aut. Aenean nec purus ac orci finibus facilisis. </p> 
-					<h5 class="w3ls-featext">3</h5>
-				</div> 
-				<div class="clerfix"> </div>
-			</div>
+									<div class="tab-content col-md-12">
+										<div id="free" class="tab-pane fade in active">
+											<h3>Free</h3>
+											{{ form_start(form_free) }}
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.firstname) }}
+													{{ form_errors(form_free.firstname) }}
+													{{ form_widget(form_free.firstname, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.lastname) }}
+													{{ form_errors(form_free.lastname) }}
+													{{ form_widget(form_free.lastname, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.email) }}
+													{{ form_errors(form_free.email) }}
+													{{ form_widget(form_free.email, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.disponible) }}
+													{{ form_errors(form_free.disponible) }}
+													{{ form_widget(form_free.disponible, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-6">
+													{{ form_label(form_free.skills) }}
+													{{ form_errors(form_free.skills) }}
+													{{ form_widget(form_free.skills, {'attr': {'class': 'form-control'}}) }}
+												</div>
 
-		</div>
-	</div>
-	<!-- //features -->
-	<!-- team -->
-	<div class="team"> 
-		<div class="container">
-            {% block box2 %}
-			<div class="w3ls-title">
-				<h3 class="agileits-title">Our Team</h3>
-			</div>	
-			<div class="new-agileinfo">
-				<div class="col-md-4 col-xs-5 team-left">
-					<ul id="demo1_thumbs" class="list-inline"> 
-						<li><a href="{{ asset('bundles/app/front/web/images/t1.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t1.jpg') }}" alt="" data-desoslide-caption="<h3>Maecenas aliqua</h3>  Eligendi optio nam libero tempore cum soluta nobis est cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Maecenas aliqua</h4> 	
-								<p>Integer </p> 
-							</div> 
-						</a></li>
-						<li><a href="{{ asset('bundles/app/front/web/images/t2.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t2.jpg') }}" alt="" data-desoslide-caption="<h3>Facere possimus </h3>  Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Facere possimus</h4> 
-								<p>volutpat</p>
-							</div>   
-						</a></li>
-						<li><a href="{{ asset('bundles/app/front/web/images/t3.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t3.jpg') }}" alt="" data-desoslide-caption="<h3>Nulla molestie</h3>  Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Nulla molestie</h4> 	
-								<p>Aliquam</p>
-							</div> 
-						</a></li>
-						<li><a href="{{ asset('bundles/app/front/web/images/t4.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t4.jpg') }}" alt="" data-desoslide-caption="<h3>Duis accumsan</h3>  Eligendi optio nam libero tempore cum soluta nobis est cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Duis accumsan</h4> 	
-								<p>Integer </p>
-							</div> 
-						</a></li> 
-					</ul>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-6">
+													{{ form_label(form_free.address) }}
+													{{ form_errors(form_free.address) }}
+													{{ form_widget(form_free.address, {'attr': {'class': 'form-control'}}) }}
+												</div>
+
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.mobile) }}
+													{{ form_errors(form_free.mobile) }}
+													{{ form_widget(form_free.mobile, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.username) }}
+													{{ form_errors(form_free.username) }}
+													{{ form_widget(form_free.username, {'attr': {'class': 'form-control'}}) }}
+												</div>
+
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.plainPassword.first) }}
+													{{ form_errors(form_free.plainPassword.first) }}
+													{{ form_widget(form_free.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_free.plainPassword.second) }}
+													{{ form_errors(form_free.plainPassword.second) }}
+													{{ form_widget(form_free.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add </button>
+												</div>
+
+											</div>
+											{{ form_end(form_free) }}
+										</div>
+										<div id="job" class="tab-pane fade">
+											<h3>Jobowner</h3>
+											{{ form_start(form_jb) }}
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.firstname) }}
+													{{ form_errors(form_jb.firstname) }}
+													{{ form_widget(form_jb.firstname, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.lastname) }}
+													{{ form_errors(form_jb.lastname) }}
+													{{ form_widget(form_jb.lastname, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.email) }}
+													{{ form_errors(form_jb.email) }}
+													{{ form_widget(form_jb.email, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.mobile) }}
+													{{ form_errors(form_jb.mobile) }}
+													{{ form_widget(form_jb.mobile, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.activitySector) }}
+													{{ form_errors(form_jb.activitySector) }}
+													{{ form_widget(form_jb.activitySector, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.socialRaison) }}
+													{{ form_errors(form_jb.socialRaison) }}
+													{{ form_widget(form_jb.socialRaison, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-6">
+													{{ form_label(form_jb.address) }}
+													{{ form_errors(form_jb.address) }}
+													{{ form_widget(form_jb.address, {'attr': {'class': 'form-control'}}) }}
+												</div>
+
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.username) }}
+													{{ form_errors(form_jb.username) }}
+													{{ form_widget(form_jb.username, {'attr': {'class': 'form-control'}}) }}
+												</div>
+
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.plainPassword.first) }}
+													{{ form_errors(form_jb.plainPassword.first) }}
+													{{ form_widget(form_jb.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+												</div>
+												<div class="form-group col-md-3">
+													{{ form_label(form_jb.plainPassword.second) }}
+													{{ form_errors(form_jb.plainPassword.second) }}
+													{{ form_widget(form_jb.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group col-md-3">
+													<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add </button>
+												</div>
+
+											</div>
+
+											{{ form_end(form_jb) }}
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>  
+					</div>
 				</div>
-				<div id="demo1_main_image" class="col-md-8 col-xs-7 team-right"></div>
-				<div class="clearfix"> </div>
 			</div>
-            {% endblock %}
 		</div>
-	</div>
-	<!-- //team --> 
-	<!-- newsletter -->  
-	<div class="footer-agiletop newsletter">
-		<div class="container"> 
-			<div class="col-md-6 w3agile_newsletter_left">
-				<h3 class="agileits-title">Newsletter</h3>
-				<p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
+	{% endif %}
+
+	{% if is_granted('ROLE_JOOW') %}
+
+		<!-- team -->
+		<div class="team"> 
+			<div class="container">
+				{% block box2 %}
+					<div class="w3ls-title">
+						<h3 class="agileits-title">Freelancers</h3>
+					</div>	
+					<div class="new-agileinfo">
+						<div class="col-md-4 col-xs-5 team-left">
+							<ul id="demo1_thumbs" class="list-inline"> 
+							{% for freelancer in freelancers %}
+								<li>
+									<a href="{{ asset('bundles/app/front/web/images/t2.jpg') }}">
+										<img src="{{ asset('bundles/app/front/web/images/t2.jpg') }}">
+										<div class="team-w3text">
+											<h4>
+												{{ freelancer.lastname }}
+								                {{ freelancer.firstname }} 
+											</h4> 
+											{% if(freelancer.disponible == 1)%}
+												<span class="btn  btn-primary" disabled>
+													Disponible
+												</span>
+											{% else %}
+												<span class="btn btn-danger"  disabled>
+													Non disponible
+												</span>
+											{% endif %}
+										</div>   
+									</a>
+								</li>
+								<a href="{{ path('freelancer_show', { 'id': freelancer.id }) }}" class="btn btn-default" target="_blank">
+									savoir plus
+								</a>
+							{% endfor %}
+							</ul>
+						</div>
+						<div id="demo1_main_image" class="col-md-8 col-xs-7 team-right"></div>
+						<div class="clearfix"> </div>
+					</div>
+				{% endblock %}
 			</div>
-			<div class="col-md-6 w3agile_newsletter_right">
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email" required="">
-					<input type="submit" value="Send" />
-				</form>
-			</div>
-			<div class="clearfix"> </div>   
 		</div>
-	</div>
-	<!-- //newsletter -->  
-	<!-- footer -->
+	{% endif %}
+
+
+	{% if is_granted('ROLE_FREE') %}
+
+		<!-- team -->
+		<div class="team"> 
+			<div class="container">
+				{% block box3 %}
+					<div class="w3ls-title">
+						<h3 class="agileits-title">Projects </h3>
+					</div>	
+					<div class="new-agileinfo">
+						<div class="col-md-4 col-xs-5 team-left">
+							<ul id="demo1_thumbs" class="list-inline"> 
+							{% for project in projects %}
+								<li>
+									<a href="">
+										<img src="">
+										<div class="team-w3text">
+											<h4>
+												{{ project.projectName }}
+											</h4> 
+											<p>
+												{{ project.projectdescription }}
+											</p>	
+										</div>   
+									</a>
+								</li>
+								<a href="{{ path('projects_show_freelancer', { 'id': project.id }) }}" class="btn btn-default">
+												savoir plus
+											</a>
+							{% endfor %}
+							</ul>
+						</div>
+						<div id="demo1_main_image" class="col-md-8 col-xs-7 team-right"></div>
+						<div class="clearfix"> </div>
+					</div>
+				{% endblock %}
+			</div>
+		</div>
+	{% endif %}
+
+
+
 	<div class="footer w3-w3layouts">
 		<div class="container"> 
 			<div class="footer-agileinfo">
@@ -503,13 +459,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script type="text/javascript" src="{{ asset('bundles/app/front/web/js/move-top.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('bundles/app/front/web/js/easing.js') }}"></script>
 	<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-			
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 			});
+		});
 	</script>
 	<!-- //end-smooth-scrolling -->	
 	<!-- smooth-scrolling-of-move-up -->
@@ -537,14 +493,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				container: '#demo1_main_image',
 				cssClass: 'img-responsive'
 			},
-			 effect: 'sideFade',
+			effect: 'sideFade',
 			caption: true
 		});
 	</script> 
 	<!-- //desoslide-JavaScript --> 
 	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('bundles/app/front/web/js/bootstrap.js') }}"></script>
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="{{ asset('bundles/app/front/web/js/bootstrap.js') }}"></script>
 </body>
 </html>

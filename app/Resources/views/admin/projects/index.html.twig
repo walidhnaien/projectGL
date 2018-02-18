@@ -1,0 +1,145 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    {{ include('admin/partials/header.html.twig') }}
+    {{ include('admin/partials/aside.html.twig') }}
+    <section class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Projects
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><a href="">Projects</a></li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <!-- <a href="" class="btn btn-primary btn-sm pull-right"><b>+</b></a> -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                            
+
+
+                            <form>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" name="search" onchange="this.form.submit()">
+                                    </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group col-sm-2 col-sm-offset-5">
+                                    </div>
+                            </form>    
+                            
+
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-striped dataTable" role="grid"
+                                aria-describedby="example1_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">Project name
+                                        </th>
+                                   
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">Activity area
+                                        </th>
+                                    
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">Description
+                                        </th>
+                                     
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">Start date
+                                        </th>
+                                   
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">End date
+                                        </th>
+                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">Payment
+                                        </th>
+                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">Experience level
+                                        </th>
+                                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                        colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending"
+                                        style="width: 197px;">Required skills
+                                        </th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example1"
+                                    rowspan="1" colspan="1"
+                                    aria-label="Platform(s): activate to sort column ascending"
+                                    style="width: 10%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             {% for project in projects %}
+                                <tr role="row" class="even">
+                                    <td>{{ project.projectName }}</td>
+                                    <td>{{ project.activityarea }}</td>
+                                    <td>{{ project.projectdescription }}</td>
+                                    <td>{% if project.startdate %}{{ project.startdate|date('Y-m-d') }}{% endif %}</td>
+                                    <td>{% if project.enddate %}{{ project.enddate|date('Y-m-d') }}{% endif %}</td>
+                                    <td>{{ project.payment }}</td>
+                                    <td>{{ project.experiencelevel }}</td>
+                                    <td>{{ project.requiredskills }}</td>
+                                    <td class="text-center">
+                                       
+                                    </td>
+                                </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- is not working ! -->
+            <div class="text-center">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /.box-body -->
+</div>
+</section>
+<!-- /.Left col -->
+</div>
+<!-- /.row (main row) -->
+</section>
+<!--  main Content -->
+</section><!-- Content Wrapper-->
+{{ include('admin/partials/footer.html.twig') }}
+
+{% endblock %}

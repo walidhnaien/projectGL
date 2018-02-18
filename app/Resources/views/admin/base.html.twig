@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- ... -->
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/bootstrap.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/font-awesome.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/ionicons.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/AdminLTE.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/_all-skins.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/morris.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/jquery-jvectormap.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/bootstrap-datepicker.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/daterangepicker.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/bootstrap3-wysihtml5.min.css')}}">
+        <script type="text/javascript" src="{{ asset('assets/js/modules/chart.min.js')}}"></script>
+
+        <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+      <!--  <link rel="stylesheet" href="{{ asset('build/app.css') }}"> -->
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+             {% block body %}{% endblock %} 
+        </div>    
+        {% block javascripts %}
+            
+        {% endblock %}
+        <script type="text/javascript" src="{{ asset('assets/js/modules/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/jquery-ui.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/raphael.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/morris.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/jquery.sparkline.min.js')}}"></script>
+         <script type="text/javascript" src="{{ asset('assets/js/modules/jquery.knob.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/moment.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/daterangepicker.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/bootstrap-datepicker.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/bootstrap3-wysihtml5.all.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/jquery.slimscroll.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/fastclick.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/adminlte.min.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/dashboard.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/modules/demo.js')}}"></script>
+
+        <!-- <script src="{{ asset('build/app.js') }}"></script> -->
+    </body>
+</html>
+
+

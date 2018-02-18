@@ -71,10 +71,13 @@ class DefaultController extends Controller
 
 
 
+        $em = $this->getDoctrine()->getManager();
 
+        $freelancers = $em->getRepository('AppBundle:Freelancer')->findAll();
+        $projects = $em->getRepository('AppBundle:Projects')->findAll();
 
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array('form_jb' => $form_jb->createView(),'form_free' => $form->createView(),'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR)
+        return $this->render('default/index.html.twig', array('freelancers' => $freelancers,'projects' => $projects,'form_jb' => $form_jb->createView(),'form_free' => $form->createView(),'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR)
 
         );
     }

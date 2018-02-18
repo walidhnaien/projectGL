@@ -1,0 +1,127 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    {{ include('admin/partials/header.html.twig') }}
+    {{ include('admin/partials/aside.html.twig') }}
+       <section class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Job Owners
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><a href="">Job Owners</a></li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <!-- <a href="" class="btn btn-primary btn-sm pull-right"><b>+</b></a> -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                  <form>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" name="search" onchange="this.form.submit()">
+                                    </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group col-sm-2 col-sm-offset-5">
+                                    </div>
+                            </form> 
+                            </div>
+                            </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1" class="table table-striped dataTable" role="grid"
+                                               aria-describedby="example1_info">
+                                            <thead>
+                                            <tr role="row">
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 197px;">Activity Area
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 197px;">Social reason
+                                                </th>
+                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 197px;">First Name
+                                                </th>
+                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 197px;">Last Name
+                                                </th>
+                                                  <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 197px;">Address
+                                                </th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 197px;">Mobile
+                                                </th>
+                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
+                                                    colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 197px;">Email
+                                                </th>
+                                                <th class="sorting text-center" tabindex="0" aria-controls="example1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label="Platform(s): activate to sort column ascending"
+                                                    style="width: 10%;"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                   {% for jobowner in jobowners %}
+
+                                                <tr role="row" class="even">
+                                                    <td>{{ jobowner.activitySector }}</td>
+                                                    <td>{{ jobowner.socialRaison }}</td>
+                                                    <td>{{ jobowner.firstname }}</td>
+                                                    <td>{{ jobowner.lastname }}</td>
+                                                    <td>{{ jobowner.address }}</td>
+                                                    <td>{{ jobowner.mobile }}</td>
+                                                    <td>{{ jobowner.user.email }}</td>
+                                                </tr>
+                                              {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- is not working ! -->
+                                        <div class="text-center">
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+        </section>
+        <!--  main Content -->
+    </section><!-- Content Wrapper-->
+        {{ include('admin/partials/footer.html.twig') }}
+
+{% endblock %}

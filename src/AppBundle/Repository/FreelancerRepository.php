@@ -10,4 +10,9 @@ namespace AppBundle\Repository;
  */
 class FreelancerRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findFreelancerByInformation()
+    {
+
+    }
 }

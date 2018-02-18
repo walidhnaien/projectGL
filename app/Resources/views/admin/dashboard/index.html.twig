@@ -1,0 +1,138 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+    {{ include('admin/partials/header.html.twig') }}
+    {{ include('admin/partials/aside.html.twig') }}
+       <section class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Dashboard
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><a href="">Dashboard</a></li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <!-- <a href="" class="btn btn-primary btn-sm pull-right"><b>+</b></a> -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <canvas id="myChart"></canvas>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <canvas id="myChart2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+        </section>
+        <!--  main Content -->
+    </section><!-- Content Wrapper-->
+        {{ include('admin/partials/footer.html.twig') }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+        <script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+var ctx = document.getElementById("myChart2").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+</script>
+
+
+
+            
+{% endblock %}
