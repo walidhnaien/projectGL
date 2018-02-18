@@ -11,7 +11,7 @@ class JobOwnerController extends Controller
 
 
 	/**
-     * @Route("/home/job-owner", name="admin_job_ownwer")
+     * @Route("/admin/job-owner", name="admin_job_ownwer")
      */
 	public function indexAction()
 	{

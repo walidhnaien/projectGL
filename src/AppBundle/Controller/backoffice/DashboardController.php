@@ -10,12 +10,10 @@ class DashboardController extends Controller
 
 
 	/**
-     * @Route("/home/dashboard", name="admin_dashboard")
+     * @Route("admin/home/dashboard", name="admin_dashboard")
      */
 	public function indexAction()
 	{
-
 		  return $this->render('admin/dashboard/index.html.twig');
-
 	}
 }

@@ -11,7 +11,7 @@ class FreelancerController extends Controller
 
 
 	/**
-     * @Route("/home/freelancer", name="admin_freelancer")
+     * @Route("/admin/freelancer", name="admin_freelancer")
      */
 	public function indexAction(Request $request)
 	{

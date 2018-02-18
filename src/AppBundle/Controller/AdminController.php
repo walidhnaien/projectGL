@@ -10,31 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminController extends Controller
 {
 
-
 	/**
-     * @Route("/login/admin", name="admin_login_form")
+     * @Route("/admin/", name="admin")
      */
-	public function loginAdminAction(Request $request)
+	public function AdminHomeAction(Request $request)
 	{
-		$csrfToken = $this->has('security.csrf.token_manager')
-            ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
-            : null;
-
-
-		return $this->render('admin/login.html.twig',array(
-            'csrf_token' => $csrfToken,
-        ));
-	}
-
-
-	/**
-     * @Route("/home", name="admin_home")
-     */
-	public function indexAction()
-	{
-
-		  return $this->render('admin/index.html.twig');
-
+		return $this->render('admin/dashboard/index.html.twig');
 	}
 
 }
