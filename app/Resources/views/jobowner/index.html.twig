@@ -1,8 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'indexFront.html.twig' %}
 
 {% block body %}
-    <h1>Jobowners list</h1>
-
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Jobowners list</h3>
+    </div>
     <table>
         <thead>
             <tr>
@@ -35,12 +36,10 @@
 
                 <td>
                     <ul>
-                        <li>
                             <a href="{{ path('jobowner_show', { 'id': jobowner.id }) }}">show</a>
-                        </li>
-                        <li>
+
                             <a href="{{ path('jobowner_edit', { 'id': jobowner.id }) }}">edit</a>
-                        </li>
+
                     </ul>
                 </td>
             </tr>
@@ -49,8 +48,7 @@
     </table>
 
     <ul>
-        <li>
             <a href="{{ path('jobowner_new') }}">Create a new jobowner</a>
-        </li>
+
     </ul>
 {% endblock %}

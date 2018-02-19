@@ -1,0 +1,41 @@
+{% extends 'indexFront.html.twig' %}
+
+{% block body %}
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Demands list</h3>
+    </div>
+    <table class="table table-condensed" >
+        <thead>
+            <tr>
+                <th>Demanddate</th>
+                <th>Demandstatus</th>
+                <th>Description</th>
+                <th>Freelancer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demand in demands %}
+            <tr>
+                <td>{% if demand.demandDate %}{{ demand.demandDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ demand.demandstatus }}</td>
+                <td>{{ demand.description }}</td>
+                <td>{{ demand.freelancer.firstname ~ " " ~ demand.freelancer.lastname }}</td>
+                <td>
+                    <ul>
+
+                            <a href="{{ path('freelancer_show', { 'id': demand.freelancer.id }) }}" class="btn btn-default" >Consult Freelancer</a>
+
+                            <a href="{{ path('demands_show', { 'id': demand.id }) }}" class="btn btn-default" >show</a>
+
+                            <a href="{{ path('demands_edit', { 'id': demand.id }) }}" class="btn btn-default" >edit</a>
+                    </ul>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

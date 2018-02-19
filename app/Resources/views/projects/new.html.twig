@@ -1,8 +1,10 @@
-{% extends 'front.html.twig' %}
+{% extends 'indexFront.html.twig' %}
 
 {% block body %}
-    <h1>Project creation</h1>
 
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Project creation</h3>
+    </div>
     {{ form_start(form) }}
     <div class="col-md-12">
         <div class="form-group col-md-3">
@@ -23,32 +25,31 @@
             {{ form_widget(form.projectdescription, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="form-group col-md-3">
+            {{ form_label(form.payment) }}
+            {{ form_errors(form.payment) }}
+            {{ form_widget(form.payment, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
             {{ form_label(form.startdate) }}
             {{ form_errors(form.startdate) }}
             {{ form_widget(form.startdate, {'attr': {'class': 'form-control'}}) }}
         </div>
-    </div>
-    <div class="col-md-12">
         <div class="form-group col-md-3">
             {{ form_label(form.enddate) }}
             {{ form_errors(form.enddate) }}
             {{ form_widget(form.enddate, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="form-group col-md-3">
-            {{ form_label(form.payment) }}
-            {{ form_errors(form.payment) }}
-            {{ form_widget(form.payment, {'attr': {'class': 'form-control'}}) }}
-        </div>
+
     </div>
     <div class="col-md-12">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-3">
             {{ form_label(form.experiencelevel) }}
             {{ form_errors(form.experiencelevel) }}
             {{ form_widget(form.experiencelevel, {'attr': {'class': 'form-control'}}) }}
         </div>
-
-    </div>
-    <div class="col-md-12">
         <div class="form-group col-md-3">
             {{ form_label(form.requiredskills) }}
             {{ form_errors(form.requiredskills) }}
@@ -59,14 +60,12 @@
     <div class="col-md-12">
         <div class="form-group col-md-3">
             <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Add </button>
-        </div>
 
+        <a class="btn btn-default" href="{{ path('projects_index') }}"><i class="fa fa-list"></i> Back to the list</a>
+    </div>
     </div>
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a class="btn btn-default" href="{{ path('projects_index') }}"><i class="fa fa-list"></i> Back to the list</a>
-        </li>
-    </ul>
+
+
 {% endblock %}

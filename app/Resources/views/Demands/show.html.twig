@@ -1,0 +1,39 @@
+{% extends 'indexFront.html.twig' %}
+
+{% block body %}
+
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Demand Details</h3>
+    </div>
+    <table class="table table-striped">
+        <tbody>
+
+            <tr>
+                <th>Demanddate</th>
+                <td>{% if demand.demandDate %}{{ demand.demandDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Demandstatus</th>
+                <td>{{ demand.demandstatus }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ demand.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="form-group col-md-3">
+            <a href="{{ path('demands_index') }}" class="btn btn-default"><i class="fa fa-list">  Back to the list</i></a>
+        {% if is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
+
+            <a href="{{ path('demands_edit', { 'id': demand.id }) }}" class="btn btn-default"> <i class="fa fa-pencil"></i>  Edit</a>
+        <ul class="col-md-12">
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-default">
+            {{ form_end(delete_form) }}
+        {% endif %}
+        </ul>
+
+    </ul>
+{% endblock %}

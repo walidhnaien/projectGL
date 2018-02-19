@@ -53,18 +53,24 @@
             {{ form_widget(edit_form.requiredskills, {'attr': {'class': 'form-control'}}) }}
         </div>
 </div>
-    <div class="col-md-1">
-        <input type="submit" value="Edit" class="btn btn-default" />
+
     {{ form_end(edit_form) }}
-    </div>
-    <ul>
+<div class="col-md-12">
         <div class="col-md-2">
-            <a href="{{ path('projects_index') }}" class="btn btn-default">Back to the list</a>
+            <a href="{{ path('projects_index') }}" class="btn btn-default">
+                <i class="fa fa-list">  Back to the list</i>
+            </a>
         </div>
             <div class="col-md-1">
+
+                <button type="submit" value="Edit" class="btn btn-default" /> <i class="fa fa-pencil">  Edit</i></button>
+
+            </div>
+
+            <div class="col-md-1">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete"  class="btn btn-danger">
+                <button type="submit" value="Delete"  class="btn btn-default"><i class="fa fa-trash">  Delete</i></button>
             {{ form_end(delete_form) }}
             </div>
-    </ul>
+</div>
 {% endblock %}

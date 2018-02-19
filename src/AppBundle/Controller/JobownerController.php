@@ -19,10 +19,28 @@ class JobownerController extends Controller
      *
      * @Route("/home", name="jobowner_home")
      */
-    public function homeAction()
+    public function homeAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $freelancers = $em->getRepository('AppBundle:Freelancer')->findAll();
+        if($request->get('search') == NULL)
+        {
+            $freelancers = $em->getRepository('AppBundle:Freelancer')->findAll();
+        }
+        else
+        {
+            $search = $request->get('search');
+
+            $freelancers = $em->getRepository("AppBundle:Freelancer")->createQueryBuilder('f')
+                ->where('f.skills LIKE :skills')
+                ->orWhere('f.disponible LIKE :disponible')
+                ->setParameter('skills', '%'.$search.'%')
+                ->setParameter('disponible','%'.$search.'%')
+                ->getQuery()
+                ->getResult();
+            //var_dump($freelancers);
+        }
+
+
         $user = $this->getUser();
 
         $jobs = $em->getRepository('AppBundle:Jobowner')->findBy(array("user"=>$user));

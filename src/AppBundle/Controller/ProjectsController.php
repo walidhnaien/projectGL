@@ -42,6 +42,13 @@ class ProjectsController extends Controller
         $project = new Projects();
         $form = $this->createForm('AppBundle\Form\ProjectsType', $project);
         $form->handleRequest($request);
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $jobs = $em->getRepository('AppBundle:Jobowner')->findBy(array("user"=>$user));
+        foreach ($jobs as $j){
+            $job = $j;
+        }
+        $project->setJobowner($job);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -66,10 +73,41 @@ class ProjectsController extends Controller
     public function showAction(Projects $project)
     {
         $deleteForm = $this->createDeleteForm($project);
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $free = $em->getRepository('AppBundle:Freelancer')->findBy(array("user"=>$user));
+        foreach ($free as $freel){
+            $freelancer = $freel;
+        }
+
+        $test = $this->getDoctrine()
+            ->getRepository('AppBundle:Tests')
+            ->findOneBy(array('freelancer' => $freelancer));
+
+
+        return $this->render('projects/show.html.twig', array(
+            'project' => $project,'test' => $test,'delete_form' => $deleteForm->createView()
+        ));
+    }
+
+    /**
+     * Finds and displays a project entity.
+     *
+     * @Route("/detail/{id}", name="projects_display")
+     * @Method("GET")
+     */
+    public function displayAction(Projects $project,$id)
+    {
+        $deleteForm = $this->createDeleteForm($project);
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('AppBundle:Projects')->find($id);
+
+
+
 
         return $this->render('projects/show.html.twig', array(
             'project' => $project,
-            'delete_form' => $deleteForm->createView(),
+            'delete_form' => $deleteForm->createView()
         ));
     }
 

@@ -52,17 +52,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							{% endif %}
 							<div class="clearfix"> </div>  
 						</div>
-						<div class="menu"> 
-							<div class="toggle"></div> 
+                        {% if is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
+						<div class="menu">
+							<div class="toggle"></div>
 							<ul class="w3nav">
-								<li><a href="index.html" class="active"> Home</a></li><li><a href="about.html"> About</a></li>
-								<li><a href="blog.html"> Blog</a></li>
-								<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Short Codes <span class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="#">Web Icons</a></li>
-										<li><a href="codes.html">Short Codes</a></li>     
-									</ul>
-								</li> 
+								<li><a href="{{ path('jobowner_home') }}" class="active"> Home</a></li>
+								<li><a href="about.html"> About</a></li>
+								<li><a href="{{ path('projects_new') }}"> New Project</a></li>
+								<li><a href="{{ path('projects_index') }}"> My Projects</a></li>
 								<li><a href="contact.html"> Contact Us</a></li>
 							</ul>
 							<div class="clearfix"> </div>
@@ -71,6 +68,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 				</div>
 			</div>
+			{% elseif is_granted('ROLE_FREE') %}
+			<div class="menu">
+				<div class="toggle"></div>
+				<ul class="w3nav">
+					<li><a href="{{ path('freelancer_home') }}" class="active"> Home</a></li>
+					<li><a href="about.html"> About</a></li>
+					<li><a href="{{ path('freelancer_edit') }}" > Edit Profil</a></li>
+					<li><a href="about.html"> About</a></li>
+
+					<li><a href="contact.html"> Contact Us</a></li>
+				</ul>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	</div>
+	{% else %}
+		<div class="menu">
+			<div class="toggle"></div>
+			<ul class="w3nav">
+				<li><a  class="active"> Home</a></li>
+				<li><a href="about.html"> About</a></li>
+
+			</ul>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
+		</div>
+		</div>
+		</div>
+            {% endif %}
+
 			<!-- //header --> 
 			<!-- banner-text --> 
 			<div class="banner-w3lstext">
@@ -307,7 +337,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //register modal -->	 
 	<!-- welcome -->
 
-	<div class="welcome"> 
+	<div class="welcome">
 		<div class="container">
 			{% block body %}
             {% block box1 %}
@@ -316,18 +346,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<h3 class="agileits-title">Welcome !</h3>
 				<h4>Cras porttitor imperdiet volutpat nulla malesuada lectus eros ut convallis felis consectetur ut </h4>
 				<p>Nulla ultricies nunc et lorem semper, quis accumsan dui aliquam aucibus sagittis placerat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi non nibh nec enim sollicitudin interdum.tristique senectus et netus et malesuada fames ac turpis egestas 
+					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi non nibh nec enim sollicitudin interdum.tristique senectus et netus et malesuada fames ac turpis egestas
 				</p>
 
-			</div>  
+			</div>
 			<div class="col-md-5 welcome-w3lright">
 				<div class="welcome-grids">
 					<div class="service-box">
 						<div class="agileits-wicon">
 							<i class="fa fa-clone" aria-hidden="true"></i>
 						</div>
-						<h5>Proin eget ipsum ultrices</h5> 
-					</div> 
+						<h5>Proin eget ipsum ultrices</h5>
+					</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="welcome-grids">
@@ -335,13 +365,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="agileits-wicon">
 							<i class="fa fa-heart-o" aria-hidden="true"></i>
 						</div>
-						<h5>Proin eget ipsum ultrices</h5> 
+						<h5>Proin eget ipsum ultrices</h5>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6 service-box">
 						<div class="agileits-wicon">
 							<i class="fa fa-tv" aria-hidden="true"></i>
 						</div>
-						<h5>Proin eget ipsum ultrices</h5> 
+						<h5>Proin eget ipsum ultrices</h5>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
@@ -349,7 +379,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             {% endblock box1 %}
             {% endblock body %}
 			<div class="clearfix"> </div>
-		</div> 
+		</div>
 	</div>
 	<!-- //welcome -->
 	<!-- features -->
@@ -382,65 +412,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!-- //features -->
 	<!-- team -->
-	<div class="team"> 
+	<div class="welcome">
+	<div class="container">
+    {% block demandef %}
+    {% endblock demandef %}
+	</div>
+	</div>
+	<div class="team">
 		<div class="container">
             {% block box2 %}
-			<div class="w3ls-title">
-				<h3 class="agileits-title">Our Team</h3>
-			</div>	
-			<div class="new-agileinfo">
-				<div class="col-md-4 col-xs-5 team-left">
-					<ul id="demo1_thumbs" class="list-inline"> 
-						<li><a href="{{ asset('bundles/app/front/web/images/t1.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t1.jpg') }}" alt="" data-desoslide-caption="<h3>Maecenas aliqua</h3>  Eligendi optio nam libero tempore cum soluta nobis est cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Maecenas aliqua</h4> 	
-								<p>Integer </p> 
-							</div> 
-						</a></li>
-						<li><a href="{{ asset('bundles/app/front/web/images/t2.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t2.jpg') }}" alt="" data-desoslide-caption="<h3>Facere possimus </h3>  Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Facere possimus</h4> 
-								<p>volutpat</p>
-							</div>   
-						</a></li>
-						<li><a href="{{ asset('bundles/app/front/web/images/t3.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t3.jpg') }}" alt="" data-desoslide-caption="<h3>Nulla molestie</h3>  Nam libero tempore cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Nulla molestie</h4> 	
-								<p>Aliquam</p>
-							</div> 
-						</a></li>
-						<li><a href="{{ asset('bundles/app/front/web/images/t4.jpg') }}"><img src="{{ asset('bundles/app/front/web/images/t4.jpg') }}" alt="" data-desoslide-caption="<h3>Duis accumsan</h3>  Eligendi optio nam libero tempore cum soluta nobis est cumque nihil impedit quo minus id quod maxime placeat facere possimus omnis optio cumque nihil impedit quo minus id quod maxime placeat facere possimus">
-							<div class="team-w3text">
-								<h4>Duis accumsan</h4> 	
-								<p>Integer </p>
-							</div> 
-						</a></li> 
-					</ul>
-				</div>
-				<div id="demo1_main_image" class="col-md-8 col-xs-7 team-right"></div>
-				<div class="clearfix"> </div>
-			</div>
+
             {% endblock %}
 		</div>
 	</div>
 	<!-- //team --> 
 	<!-- newsletter -->  
-	<div class="footer-agiletop newsletter">
-		<div class="container"> 
-			<div class="col-md-6 w3agile_newsletter_left">
-				<h3 class="agileits-title">Newsletter</h3>
-				<p>Excepteur sint occaecat cupidatat non proident, sunt.</p>
-			</div>
-			<div class="col-md-6 w3agile_newsletter_right">
-				<form action="#" method="post">
-					<input type="email" name="Email" placeholder="Email" required="">
-					<input type="submit" value="Send" />
-				</form>
-			</div>
-			<div class="clearfix"> </div>   
-		</div>
-	</div>
-	<!-- //newsletter -->  
+	<!-- //newsletter -->
 	<!-- footer -->
 	<div class="footer w3-w3layouts">
 		<div class="container"> 

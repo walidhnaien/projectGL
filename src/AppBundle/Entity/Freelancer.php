@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Freelancer
@@ -86,6 +89,29 @@ class Freelancer
      * @var string
      */
     protected $username;
+
+    /**************************************** upload file *****************************/
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "application/pdf" })
+     */
+    private $cv;
+
+    public function getCv()
+    {
+        return $this->cv;
+    }
+
+    public function setCv($cv)
+    {
+        $this->cv = $cv;
+
+        return $this;
+    }
+    /***************************************************************************************************/
+
 
     /**
      * @return mixed

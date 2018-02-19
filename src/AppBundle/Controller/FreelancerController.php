@@ -3,8 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Freelancer;
+use AppBundle\Form\FreelancerType;
 use AppBundle\Entity\Jobowner;
 use AppBundle\Entity\Projects;
+use Doctrine\DBAL\Cache\ResultCacheStatement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,23 +20,81 @@ use Symfony\Component\HttpFoundation\Request;
 class FreelancerController extends Controller
 {
     /**
+     *
+     * @Route("/edit", name="freelancer_edit")
+     */
+    public function editAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $freelancers = $em->getRepository('AppBundle:Freelancer')->findBy(array("user"=>$user));
+        $freelancer = new Freelancer();
+        foreach($freelancers as $f){
+            $freelancer = $f;
+        }
+
+        $editForm = $this->createForm('AppBundle\Form\FreelancerType', $freelancer);
+        $editForm->handleRequest($request);
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $userManager = $this->container->get('fos_user.user_manager');
+            $user->setEmail($user->getEmail());
+            $user->setUsername($user->getUsername());
+            $user->setPlainPassword($user->getPlainPassword());
+            //$deleteForm = $this->createDeleteForm($freelancer);
+            $userManager->updateUser($user);
+            $em->flush();
+
+            return $this->redirectToRoute('freelancer_edit');
+        }
+
+        return $this->render('freelancer/edit.html.twig', array(
+            'edit_form' => $editForm->createView(),
+
+        ));
+    }
+    /**
      * home  freelancer .
      *
      * @Route("/home", name="freelancer_home")
      *
      */
-    public function homeAction()
+    public function homeAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $ps = $em->getRepository('AppBundle:Projects')->findAll();
+        $user = $this->getUser();
+        $freelancers = $em->getRepository('AppBundle:Freelancer')->findBy(array("user"=>$user));
+        $freelancer = new Freelancer();
+        foreach($freelancers as $f){
+            $freelancer = $f;
+        }
+
+        $demands = $em->getRepository('AppBundle:Demands')->findBy(array("freelancer"=>$freelancer));
+        if($request->get('search') == NULL)
+        {
+            $ps = $em->getRepository('AppBundle:Projects')->findAll();
+        }
+        else
+        {
+            $search = $request->get('search');
+
+            $ps = $em->getRepository("AppBundle:Projects")->createQueryBuilder('p')
+                ->where('p.activityarea LIKE :activityarea')
+                ->orWhere('p.requiredskills LIKE :requiredskills')
+                ->setParameter('activityarea', '%'.$search.'%')
+                ->setParameter('requiredskills','%'.$search.'%')
+                ->getQuery()
+                ->getResult();
+            //var_dump($freelancers);
+        }
+
         /*
         $free= new Freelancer();
         $job = new Jobowner();
         $form = $this->createForm('AppBundle\Form\FreelancerType', $free);
         $form2 = $this->createForm('AppBundle\Form\JobownerType', $job);*/
         return $this->render('freelancer/home.html.twig', array(
-            'projects' => $ps
+            'projects' => $ps,'demandes'=>$demands
         ));
     }
     /**
@@ -110,34 +170,7 @@ class FreelancerController extends Controller
         ));
     }
 
-    /**
-     * Displays a form to edit an existing freelancer entity.
-     *
-     * @Route("/{id}/edit", name="freelancer_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Freelancer $freelancer)
-    {
-        $user = $freelancer->getUser();
-        $freelancer->setEmail($user->getEmail());
-        $freelancer->setUsername($user->getUsername());
-        $freelancer->setPlainPassword($user->getPlainPassword());
-        $deleteForm = $this->createDeleteForm($freelancer);
-        $editForm = $this->createForm('AppBundle\Form\FreelancerType', $freelancer);
-        $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('freelancer_edit', array('id' => $freelancer->getId()));
-        }
-
-        return $this->render('freelancer/edit.html.twig', array(
-            'freelancer' => $freelancer,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
     /**
      * Deletes a freelancer entity.

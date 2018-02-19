@@ -1,12 +1,14 @@
-{% extends 'front.html.twig' %}
+{% extends 'indexFront.html.twig' %}
 
 {% block body %}
-    <h1>Projects list</h1>
 
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Projects list</h3>
+    </div>
     <table class="table table-condensed" >
         <thead>
             <tr>
-                <th>Id</th>
+
                 <th>Projectname</th>
                 <th>Activityarea</th>
                 <th>Projectdescription</th>
@@ -21,7 +23,7 @@
         <tbody>
         {% for project in projects %}
             <tr>
-                <td><a href="{{ path('projects_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+
                 <td>{{ project.projectName }}</td>
                 <td>{{ project.activityarea }}</td>
                 <td>{{ project.projectdescription }}</td>
@@ -31,23 +33,19 @@
                 <td>{{ project.experiencelevel }}</td>
                 <td>{{ project.requiredskills }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a class="btn btn-default" href="{{ path('projects_show', { 'id': project.id }) }}"><i class="fa fa-list"></i> show</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-default"  href="{{ path('projects_edit', { 'id': project.id }) }}"><i class="fa fa-list"></i> edit</a>
-                        </li>
-                    </ul>
+               <a class="btn btn-default" href="{{ path('projects_show', { 'id': project.id }) }}"><i class="	fa fa-eye"></i> show</a>
+                    {% if is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
+               <a class="btn btn-default"  href="{{ path('projects_edit', { 'id': project.id }) }}"><i class="fa fa-pencil"></i> edit</a>
                 </td>
             </tr>
+                    {% endif %}
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
+{% if is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
             <a class="btn btn-default" href="{{ path('projects_new') }}"><i class="fa fa-list"></i> Create a new project</a>
-        </li>
-    </ul>
+{% endif %}
+
+
+
 {% endblock %}

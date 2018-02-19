@@ -40,11 +40,12 @@
     </table>
 
     <ul>
+        <td><a class="btn btn-default" target="_blank" href="{{ asset('uploads/cvs/' ~ freelancer.cv) }}"><i class="fa fa-file" style=""></i> View Cv (PDF)</a></td>
 
-           <a href="{{ path('jobowner_home') }}" class="btn btn-default"><i class="fa fa-reorder" style=""></i>  Back to the list</a>
+        <a href="{{ path('jobowner_home') }}" class="btn btn-default"><i class="fa fa-reorder" style=""></i>  Back to the list</a>
 
 
-          <a href="{{ path('freelancer_edit', { 'id': freelancer.id }) }}" class="btn btn-default"><i class="fa fa-envelope"></i>  Sent a job offer</a>
+          <a href="{{ path('demands_new', { 'id': freelancer.id }) }}" class="btn btn-default"><i class="fa fa-envelope"></i>  Sent a job offer</a>
 
 
 
