@@ -1,21 +1,76 @@
-{% extends 'base.html.twig' %}
+{% extends 'indexFront.html.twig' %}
 
 {% block body %}
-    <h1>Project edit</h1>
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Project edit</h3>
+    </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+<div class="col-md-12">
+    <div class="form-group col-md-3">
+        {{ form_label(edit_form.projectName) }}
+        {{ form_errors(edit_form.projectName) }}
+        {{ form_widget(edit_form.projectName, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group col-md-3">
+        {{ form_label(edit_form.activityarea) }}
+        {{ form_errors(edit_form.activityarea) }}
+        {{ form_widget(edit_form.activityarea, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="form-group col-md-3">
+        {{ form_label(edit_form.projectdescription) }}
+        {{ form_errors(edit_form.projectdescription) }}
+        {{ form_widget(edit_form.projectdescription, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group col-md-3">
+        {{ form_label(edit_form.payment) }}
+        {{ form_errors(edit_form.payment) }}
+        {{ form_widget(edit_form.payment, {'attr': {'class': 'form-control'}}) }}
+    </div>
+</div>
+ <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(edit_form.startdate) }}
+            {{ form_errors(edit_form.startdate) }}
+            {{ form_widget(edit_form.startdate)}}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(edit_form.enddate) }}
+            {{ form_errors(edit_form.enddate) }}
+            {{ form_widget(edit_form.enddate)}}
+        </div>
+ </div>
+<div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(edit_form.experiencelevel) }}
+            {{ form_errors(edit_form.experiencelevel) }}
+            {{ form_widget(edit_form.experiencelevel, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(edit_form.requiredskills) }}
+            {{ form_errors(edit_form.requiredskills) }}
+            {{ form_widget(edit_form.requiredskills, {'attr': {'class': 'form-control'}}) }}
+        </div>
+</div>
+
     {{ form_end(edit_form) }}
+<div class="col-md-12">
+        <div class="col-md-2">
+            <a href="{{ path('projects_index') }}" class="btn btn-default">
+                <i class="fa fa-list">  Back to the list</i>
+            </a>
+        </div>
+            <div class="col-md-1">
 
-    <ul>
-        <li>
-            <a href="{{ path('projects_index') }}">Back to the list</a>
-        </li>
-        <li>
+                <button type="submit" value="Edit" class="btn btn-default" /> <i class="fa fa-pencil">  Edit</i></button>
+
+            </div>
+
+            <div class="col-md-1">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <button type="submit" value="Delete"  class="btn btn-default"><i class="fa fa-trash">  Delete</i></button>
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            </div>
+</div>
 {% endblock %}

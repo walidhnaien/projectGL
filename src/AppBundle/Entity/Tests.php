@@ -35,6 +35,13 @@ class Tests
      */
     private $testdescription;
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id")
+     * @ORM\JoinColumn(name="freelancer",referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $freelancer;
+
 
     /**
      * Get id
@@ -93,5 +100,23 @@ class Tests
     {
         return $this->testdescription;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFreelancer()
+    {
+        return $this->freelancer;
+    }
+
+    /**
+     * @param mixed $freelancer
+     */
+    public function setFreelancer($freelancer)
+    {
+        $this->freelancer = $freelancer;
+    }
+
+
 }
 

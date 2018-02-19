@@ -1,0 +1,39 @@
+{% extends 'indexFront.html.twig' %}
+
+{% block body %}
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Demand edit</h3>
+    </div>
+    {{ form_start(edit_form) }}
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            {{ form_label(edit_form.demandDate) }}
+            {{ form_errors(edit_form.demandDate) }}
+            {{ form_widget(edit_form.demandDate, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form_label(edit_form.demandstatus) }}
+            {{ form_errors(edit_form.demandstatus) }}
+            {{ form_widget(edit_form.demandstatus, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-6">
+            {{ form_label(edit_form.description) }}
+            {{ form_errors(edit_form.description) }}
+            {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <ul class="col-md-12">
+        <input type="submit" value="Edit" class="btn btn-default"/>
+    {{ form_end(edit_form) }}
+
+
+            <a href="{{ path('demands_index') }}" class="btn btn-default"><i class="fa fa-list">  Back to the list</i></a>
+        <div class="col-md-1">
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}
+        </div>
+    </ul>
+{% endblock %}

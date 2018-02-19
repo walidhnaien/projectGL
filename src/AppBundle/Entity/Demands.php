@@ -36,23 +36,13 @@ class Demands
     private $demandstatus;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="sender", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Jobowner",inversedBy="id")
+     * @ORM\JoinColumn(name="jobowner",referencedColumnName="id",onDelete="CASCADE")
      */
-    private $sender;
+    private $jobowner;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="receiver", type="string", length=255)
-     */
-    private $receiver;
-
-
-    /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -61,22 +51,14 @@ class Demands
     }
 
     /**
-     * Set demandDate
-     *
-     * @param \DateTime $demandDate
-     *
-     * @return Demands
+     * @param int $id
      */
-    public function setDemandDate($demandDate)
+    public function setId($id)
     {
-        $this->demandDate = $demandDate;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get demandDate
-     *
      * @return \DateTime
      */
     public function getDemandDate()
@@ -85,22 +67,14 @@ class Demands
     }
 
     /**
-     * Set demandstatus
-     *
-     * @param string $demandstatus
-     *
-     * @return Demands
+     * @param \DateTime $demandDate
      */
-    public function setDemandstatus($demandstatus)
+    public function setDemandDate($demandDate)
     {
-        $this->demandstatus = $demandstatus;
-
-        return $this;
+        $this->demandDate = $demandDate;
     }
 
     /**
-     * Get demandstatus
-     *
      * @return string
      */
     public function getDemandstatus()
@@ -109,51 +83,98 @@ class Demands
     }
 
     /**
-     * Set sender
-     *
-     * @param string $sender
-     *
-     * @return Demands
+     * @param string $demandstatus
      */
-    public function setSender($sender)
+    public function setDemandstatus($demandstatus)
     {
-        $this->sender = $sender;
-
-        return $this;
+        $this->demandstatus = $demandstatus;
     }
 
     /**
-     * Get sender
-     *
+     * @return mixed
+     */
+    public function getJobowner()
+    {
+        return $this->jobowner;
+    }
+
+    /**
+     * @param mixed $jobowner
+     */
+    public function setJobowner($jobowner)
+    {
+        $this->jobowner = $jobowner;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFreelancer()
+    {
+        return $this->freelancer;
+    }
+
+    /**
+     * @param mixed $freelancer
+     */
+    public function setFreelancer($freelancer)
+    {
+        $this->freelancer = $freelancer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param mixed $project
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+    }
+
+    /**
      * @return string
      */
-    public function getSender()
+    public function getDescription()
     {
-        return $this->sender;
+        return $this->description;
     }
 
     /**
-     * Set receiver
-     *
-     * @param string $receiver
-     *
-     * @return Demands
+     * @param string $description
      */
-    public function setReceiver($receiver)
+    public function setDescription($description)
     {
-        $this->receiver = $receiver;
-
-        return $this;
+        $this->description = $description;
     }
 
     /**
-     * Get receiver
      *
-     * @return string
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id")
+     * @ORM\JoinColumn(name="freelancer",referencedColumnName="id",onDelete="CASCADE")
      */
-    public function getReceiver()
-    {
-        return $this->receiver;
-    }
+    private $freelancer;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects",inversedBy="id")
+     * @ORM\JoinColumn(name="project",referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $project;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+
 }
 

@@ -1,9 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'indexFront.html.twig' %}
 
 {% block body %}
-    <h1>Freelancer</h1>
+    <div class="w3ls-title">
+        <h3 class="agileits-title">FreeLancer</h3>
+    </div>
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Skills</th>
@@ -14,26 +16,39 @@
                 <td>{{ freelancer.disponible }}</td>
             </tr>
             <tr>
-                <th>Id</th>
-                <td>{{ freelancer.id }}</td>
+                <th>First name</th>
+                <td>{{ freelancer.firstname }}</td>
             </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{ freelancer.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ freelancer.address }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ freelancer.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ freelancer.user.email }}</td>
+            </tr>
+
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('freelancer_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('freelancer_edit', { 'id': freelancer.id }) }}">Edit</a>
-        </li>
-        <li>
-            <a href="{{ path('freelancer_edit', { 'id': freelancer.id }) }}">Sent a job offer</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        <td><a class="btn btn-default" target="_blank" href="{{ asset('uploads/cvs/' ~ freelancer.cv) }}"><i class="fa fa-file" style=""></i> View Cv (PDF)</a></td>
+
+        <a href="{{ path('jobowner_home') }}" class="btn btn-default"><i class="fa fa-reorder" style=""></i>  Back to the list</a>
+
+
+          <a href="{{ path('demands_new', { 'id': freelancer.id }) }}" class="btn btn-default"><i class="fa fa-envelope"></i>  Sent a job offer</a>
+
+
+
+
     </ul>
 {% endblock %}

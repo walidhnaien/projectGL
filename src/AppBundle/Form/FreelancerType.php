@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 use FOS\UserBundle\Util\LegacyFormHelper;
 class FreelancerType extends AbstractType
@@ -22,6 +23,7 @@ class FreelancerType extends AbstractType
             ->add('address')
             ->add('skills')
             ->add('disponible')
+            ->add('cv', FileType::class, array('label' => 'Cv (PDF file)'))
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'Email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'Username', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
