@@ -36,7 +36,6 @@ class DashboardController extends Controller
         $chartFreelancersByAcceptedProject = $this->getProjectsJobownerChart('Freelancers By Projects', $freelancersByAcceptedProject);
         $chartFreelancersByReputation = $this->getProjectsJobownerChart('Freelancers By Reputation', $freelancersByReputation); 
 
-
         return $this->render('admin/dashboard/index.html.twig', 
                     array(
                             'chartProjectsJobowner' => $chartProjectsJobowner,
