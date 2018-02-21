@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\EntityManager;
 
 /**
  * JobownerRepository
@@ -10,4 +11,40 @@ namespace AppBundle\Repository;
  */
 class JobownerRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	public $em;
+
+	public function __construct(EntityManager $em)
+	{
+		$this->em = $em;
+	}
+
+	public function sortProjectsByJobOwner() : Array
+	{
+
+	    $projectsByJobOwner = $this->em->createQueryBuilder('projects')
+							            ->select('jobowner.id, jobowner.socialRaison,jobowner.firstname,jobowner.lastname,count(project.id) as NumberofData')
+							            ->from('AppBundle\Entity\Projects','project')
+									    ->join('project.jobowner', 'jobowner')
+									    ->groupby('jobowner.id')
+									    ->orderBy('NumberofData','DESC')
+									    ->getQuery()
+									    ->getResult();                      
+	    return $projectsByJobOwner;     
+	}
+
+
+    public function sortJobOwnerByReputition()
+    {
+     	$jobOwnerByRepution = $this->em->createQueryBuilder('joevaluation')
+     	                               ->select('jobowner.id, jobowner.socialRaison, jobowner.firstname, COUNT(joevaluation.mark) AS NumberofData')
+     	                               ->from('AppBundle\Entity\Joevaluation','joevaluation')
+     	                               ->join('joevaluation.jobowner','jobowner')
+     	                               ->groupby('jobowner.id')
+     	                               ->orderBy('NumberofData','DESC')
+     	                               ->getQuery()
+     	                               ->getResult();
+
+     	return $jobOwnerByRepution;                               
+    }
 }

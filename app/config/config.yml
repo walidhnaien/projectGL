@@ -74,3 +74,5 @@ fos_user:
     from_email:
         address: "walid.hnaien@esprit.tn"
         sender_name: "walid"
+#cmen_goole_charts:
+#    version: "current"

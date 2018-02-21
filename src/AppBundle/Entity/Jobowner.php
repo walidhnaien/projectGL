@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 use AppBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Jobowner
@@ -39,6 +41,13 @@ class Jobowner
      * @ORM\JoinColumn(name="user",referencedColumnName="id",onDelete="CASCADE")
      */
     private $user;
+
+
+    /**
+     * One Jobowner has Many Projects.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Projects", mappedBy="jobowner")
+     */
+    private $projects;
 
 
     /**
@@ -84,6 +93,13 @@ class Jobowner
      * @var string
      */
     protected $username;
+
+
+    public function __construct() {
+        $this->projects = new ArrayCollection();
+    }
+
+
     /**
      * @return mixed
      */
@@ -103,10 +119,17 @@ class Jobowner
 
         return $this->user;
     }
-    public function __construct()
+
+    public function setProject($project)
     {
-        // your own logic
+        $this->projects = $project;
     }
+
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
     /**
      * Set activitySector
      *

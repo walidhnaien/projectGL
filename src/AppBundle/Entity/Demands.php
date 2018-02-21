@@ -31,7 +31,7 @@ class Demands
     /**
      * @var string
      *
-     * @ORM\Column(name="demandstatus", type="string", length=255)
+     * @ORM\Column(name="demandstatus", type="string", length=255,options={"comment":"0=>default,1=> accepted,-1=>declined"})
      */
     private $demandstatus;
 
@@ -41,6 +41,28 @@ class Demands
      * @ORM\JoinColumn(name="jobowner",referencedColumnName="id",onDelete="CASCADE")
      */
     private $jobowner;
+
+      /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id")
+     * @ORM\JoinColumn(name="freelancer",referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $freelancer;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects",inversedBy="id")
+     * @ORM\JoinColumn(name="project",referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $project;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+    
 
     /**
      * @return int
@@ -153,28 +175,5 @@ class Demands
     {
         $this->description = $description;
     }
-
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id")
-     * @ORM\JoinColumn(name="freelancer",referencedColumnName="id",onDelete="CASCADE")
-     */
-    private $freelancer;
-
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Projects",inversedBy="id")
-     * @ORM\JoinColumn(name="project",referencedColumnName="id",onDelete="CASCADE")
-     */
-    private $project;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    private $description;
-
-
 }
 

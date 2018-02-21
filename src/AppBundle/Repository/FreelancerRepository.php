@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\EntityManager;
+
 
 /**
  * FreelancerRepository
@@ -11,8 +13,40 @@ namespace AppBundle\Repository;
 class FreelancerRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function findFreelancerByInformation()
+	public $em;
+
+	public function __construct(EntityManager $em)
+	{
+		$this->em = $em;
+	}
+    
+    public function sortFreelancersByAcceptedProjects()
     {
+    	$freelancersByAcceptedProject = $this->em->createQueryBuilder('demands')
+										    	->select('freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData')
+										    	->from('AppBundle\Entity\Demands','demands')
+										    	->join('demands.freelancer','freelancer')
+										    	->groupby('freelancer.id')
+										    	->orderBy('NumberofData','DESC')
+										    	->getQuery()
+										    	->getResult();
+
+    	return $freelancersByAcceptedProject; 
 
     }
+
+	public function sortFreelancerByReputation()
+	{
+		$freelancersByReputation = $this->em->createQueryBuilder('flevaluation')
+										    	->select('freelancer.id,freelancer.firstname,freelancer.lastname,COUNT(flevaluation.mark) AS NumberofData ')
+										    	->from('AppBundle\Entity\Flevaluation','flevaluation')
+										    	->join('flevaluation.freelancer','freelancer')
+										    	->groupby('freelancer.id')
+										    	->orderBy('NumberofData','DESC')
+										    	->getQuery()
+										    	->getResult();
+
+    	return $freelancersByReputation; 
+
+	}    
 }
