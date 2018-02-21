@@ -22,29 +22,27 @@ class DashboardController extends Controller
 
         $jobownerRepository = new JobownerRepository($em);
         $projectsByJobOwner = $jobownerRepository->sortProjectsByJobOwner();
-        // fix relationship between Joevaluation & JobOwner inside Joevaluation
-        //$jobOwnerByReputition = $jobownerRepository->sortJobOwnerByReputition();
+        $jobOwnerByReputition = $jobownerRepository->sortJobOwnerByReputition();
 
 
         $freelancerRepository = new FreelancerRepository($em);
         $freelancersByAcceptedProject = $freelancerRepository->sortFreelancersByAcceptedProjects();
-         // fix relationship between flevaluation & freelancer inside flevaluation
-        //$freelancersByReputation = $freelancerRepository->sortFreelancerByReputation();
+        $freelancersByReputation = $freelancerRepository->sortFreelancerByReputation();
 
 
 
         $chartProjectsJobowner = $this->getProjectsJobownerChart('Job Owner By Projects', $projectsByJobOwner);
-       // $chartJobOwnerByReputition = $this->getProjectsJobownerChart('Job Owner By Reputition', $jobOwnerByReputition);
-        //$chartFreelancersByAcceptedProject = $this->getProjectsJobownerChart('Freelancers By Projects', $freelancersByAcceptedProject);
-        //$chartFreelancersByReputation = $this->getProjectsJobownerChart('Freelancers By Reputation', $freelancersByReputation); 
+        $chartJobOwnerByReputition = $this->getProjectsJobownerChart('Job Owner By Reputition', $jobOwnerByReputition);
+        $chartFreelancersByAcceptedProject = $this->getProjectsJobownerChart('Freelancers By Projects', $freelancersByAcceptedProject);
+        $chartFreelancersByReputation = $this->getProjectsJobownerChart('Freelancers By Reputation', $freelancersByReputation); 
 
 
         return $this->render('admin/dashboard/index.html.twig', 
                     array(
                             'chartProjectsJobowner' => $chartProjectsJobowner,
-                            //'chartJobOwnerByReputition' => $chartJobOwnerByReputition,
-                            //'chartFreelancersByAcceptedProject' => $chartFreelancersByAcceptedProject,
-                            //'chartFreelancersByReputation'      => $chartFreelancersByReputation
+                            'chartJobOwnerByReputition' => $chartJobOwnerByReputition,
+                            'chartFreelancersByAcceptedProject' => $chartFreelancersByAcceptedProject,
+                            'chartFreelancersByReputation'      => $chartFreelancersByReputation
                         ));
 
 	}

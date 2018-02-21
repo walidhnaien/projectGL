@@ -20,14 +20,26 @@ class FreelancerRepository extends \Doctrine\ORM\EntityRepository
 		$this->em = $em;
 	}
     
+
+
+  /*
+	    #3-  sort freelancer by accepted projects
+	     $query = $em->createQuery('SELECT freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData from AppBundle\Entity\Demands demands
+	                                 JOIN demands.freelancer freelancer  WHERE  demands.demandstatus = 1 GROUP BY freelancer.id ORDER BY NumberofData DESC');
+	    $freelancersByAcceptedProject = $query->getResult(); 
+    */
+
+
     public function sortFreelancersByAcceptedProjects()
     {
     	$freelancersByAcceptedProject = $this->em->createQueryBuilder('demands')
 										    	->select('freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData')
 										    	->from('AppBundle\Entity\Demands','demands')
 										    	->join('demands.freelancer','freelancer')
+										    	->where('demands.demandstatus = :demandstatus')
 										    	->groupby('freelancer.id')
 										    	->orderBy('NumberofData','DESC')
+										    	->setParameter('demandstatus', 1)
 										    	->getQuery()
 										    	->getResult();
 

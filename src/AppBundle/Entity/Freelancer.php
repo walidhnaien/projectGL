@@ -46,6 +46,14 @@ class Freelancer
 
 
     /**
+    * One Freelancer has Many Flevaluation.
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flevaluation", mappedBy="jobowner")
+    */
+    private $joevaluation;
+
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
@@ -90,7 +98,6 @@ class Freelancer
      */
     protected $username;
 
-    /**************************************** upload file *****************************/
     /**
      * @ORM\Column(type="string")
      *
@@ -110,8 +117,6 @@ class Freelancer
 
         return $this;
     }
-    /***************************************************************************************************/
-
 
     /**
      * @return mixed

@@ -35,12 +35,14 @@ class Joevaluation
      */
     private $freelancer;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="jobowner", type="string", length=255)
-     */
+    *
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Jobowner",inversedBy="id")
+    * @ORM\JoinColumn(name="jobowner",referencedColumnName="id",onDelete="CASCADE")
+    */
     private $jobowner;
+
 
 
     /**

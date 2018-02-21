@@ -23,7 +23,6 @@
                 <section class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <!-- <a href="" class="btn btn-primary btn-sm pull-right"><b>+</b></a> -->
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -52,16 +51,16 @@
             <!-- /.row (main row) -->
         </section>
         <!--  main Content -->
-    </section><!-- Content Wrapper-->
+    </section>
     {{ include('admin/partials/footer.html.twig') }}
 
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-         {{ gc_draw(chartProjectsJobowner, 'projects_jobowner') }}
-         {{ gc_draw(chartProjectsJobowner, 'notes_jobowner') }}
-          {{ gc_draw(chartProjectsJobowner, 'projects_freelancers') }}
-         {{ gc_draw(chartProjectsJobowner, 'skills_jobwner') }}
+        {{ gc_draw(chartProjectsJobowner, 'projects_jobowner') }}
+        {{ gc_draw(chartJobOwnerByReputition, 'notes_jobowner') }}
+        {{ gc_draw(chartFreelancersByAcceptedProject, 'projects_freelancers') }}
+        {{ gc_draw(chartFreelancersByReputation, 'skills_jobwner') }}
     </script>
 {% endblock %}

@@ -49,6 +49,12 @@ class Jobowner
      */
     private $projects;
 
+      /**
+     * One Jobowner has Many Joevaluation.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Joevaluation", mappedBy="jobowner")
+     */
+    private $joevaluation;
+
 
     /**
      * @var string
@@ -97,6 +103,7 @@ class Jobowner
 
     public function __construct() {
         $this->projects = new ArrayCollection();
+        $this->joevaluation = new ArrayCollection();
     }
 
 
@@ -128,6 +135,16 @@ class Jobowner
     public function getProjects()
     {
         return $this->projects;
+    }
+
+    public function setJoevaluation($joevaluation)
+    {
+        $this->joevaluation = $joevaluation;
+    }
+
+    public function getJoevaluation()
+    {
+        return $this->joevaluation;
     }
 
     /**

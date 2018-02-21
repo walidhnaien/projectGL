@@ -35,11 +35,12 @@ class Flevaluation
      */
     private $jobowner;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="freelancer", type="string", length=255)
-     */
+    *
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id")
+    * @ORM\JoinColumn(name="freelancer",referencedColumnName="id",onDelete="CASCADE")
+    */
     private $freelancer;
 
 
