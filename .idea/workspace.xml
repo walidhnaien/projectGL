@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="194d8482-2498-4c92-89f1-c9b0d15022f4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/jobowner/examen/get_exam.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/routing/examen.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/css/lightbox.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/css/my_css2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/Demands/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/Demands/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/freelancer/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/freelancer/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/freelancer/home.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/freelancer/home.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/indexFront.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/indexFront.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/jobowner/home.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/jobowner/home.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/projects/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/projects/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/projects/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/projects/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FreelancerController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FreelancerController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProjectsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/FreelancerType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FreelancerType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/public/css/light.css" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/css/light.css" />
-    </list>
+    <list default="true" id="194d8482-2498-4c92-89f1-c9b0d15022f4" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,28 +12,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/projects/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="49" column="38" lean-forward="false" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
-              <folding>
-                <element signature="e#12#32#0#Twig" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProjectsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ProjectsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="88" column="39" lean-forward="false" selection-start-line="88" selection-start-column="35" selection-end-line="88" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ExamenController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ExamenController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -544,12 +504,12 @@
       <workItem from="1519153377715" duration="4706000" />
       <workItem from="1519159395632" duration="3806000" />
       <workItem from="1519237620845" duration="14089000" />
-      <workItem from="1519325340918" duration="5068000" />
+      <workItem from="1519325340918" duration="5639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166141000" />
+    <option name="totallyTimeSpent" value="166712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="0" />
