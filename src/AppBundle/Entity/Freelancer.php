@@ -47,9 +47,16 @@ class Freelancer
 
     /**
     * One Freelancer has Many Flevaluation.
-    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flevaluation", mappedBy="jobowner")
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flevaluation", mappedBy="freelancer")
     */
-    private $joevaluation;
+    private $flevaluation;
+
+
+    /**
+    * One Freelancer has Many Flevaluation.
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Demands", mappedBy="freelancer")
+    */
+    private $demands;
 
 
 

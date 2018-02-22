@@ -13,26 +13,9 @@ use Doctrine\ORM\EntityManager;
 class FreelancerRepository extends \Doctrine\ORM\EntityRepository
 {
 
-	public $em;
-
-	public function __construct(EntityManager $em)
-	{
-		$this->em = $em;
-	}
-    
-
-
-  /*
-	    #3-  sort freelancer by accepted projects
-	     $query = $em->createQuery('SELECT freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData from AppBundle\Entity\Demands demands
-	                                 JOIN demands.freelancer freelancer  WHERE  demands.demandstatus = 1 GROUP BY freelancer.id ORDER BY NumberofData DESC');
-	    $freelancersByAcceptedProject = $query->getResult(); 
-    */
-
-
-    public function sortFreelancersByAcceptedProjects()
+    public function sortFreelancersByAcceptedProjects() : array
     {
-    	$freelancersByAcceptedProject = $this->em->createQueryBuilder('demands')
+    	$freelancersByAcceptedProject = $this->createQueryBuilder('demands')
 										    	->select('freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData')
 										    	->from('AppBundle\Entity\Demands','demands')
 										    	->join('demands.freelancer','freelancer')
@@ -47,9 +30,9 @@ class FreelancerRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
-	public function sortFreelancerByReputation()
+	public function sortFreelancerByReputation() : array
 	{
-		$freelancersByReputation = $this->em->createQueryBuilder('flevaluation')
+		$freelancersByReputation = $this->createQueryBuilder('flevaluation')
 										    	->select('freelancer.id,freelancer.firstname,freelancer.lastname,COUNT(flevaluation.mark) AS NumberofData ')
 										    	->from('AppBundle\Entity\Flevaluation','flevaluation')
 										    	->join('flevaluation.freelancer','freelancer')

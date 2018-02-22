@@ -44,7 +44,6 @@ class Joevaluation
     private $jobowner;
 
 
-
     /**
      * Get id
      *

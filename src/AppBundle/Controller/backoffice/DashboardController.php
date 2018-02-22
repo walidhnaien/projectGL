@@ -20,26 +20,27 @@ class DashboardController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $jobownerRepository = new JobownerRepository($em);
-        $projectsByJobOwner = $jobownerRepository->sortProjectsByJobOwner();
-        $jobOwnerByReputition = $jobownerRepository->sortJobOwnerByReputition();
+        $projectsByJobOwner = $em->getRepository('AppBundle:Jobowner')->sortProjectsByJobOwner();
+        $jobOwnerByReputition  = $em->createQuery('SELECT jobowner.id, jobowner.socialRaison, jobowner.firstname, COUNT(joevaluation.mark) AS NumberofData 
+                      FROM AppBundle\Entity\Joevaluation joevaluation  JOIN joevaluation.jobowner jobowner GROUP BY jobowner.id ORDER BY NumberofData DESC')->getResult();
 
 
-        $freelancerRepository = new FreelancerRepository($em);
-        $freelancersByAcceptedProject = $freelancerRepository->sortFreelancersByAcceptedProjects();
-        $freelancersByReputation = $freelancerRepository->sortFreelancerByReputation();
+        $freelancersByAcceptedProject = $em->createQuery('SELECT freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData from AppBundle\Entity\Demands demands
+                                     JOIN demands.freelancer freelancer  WHERE  demands.demandstatus = 1 GROUP BY freelancer.id ORDER BY NumberofData DESC')->getResult();
+
+        $freelancersByReputation = $em->createQuery('SELECT freelancer.id,freelancer.firstname,freelancer.lastname,COUNT(flevaluation.mark) AS NumberofData from AppBundle\Entity\Flevaluation  flevaluation JOIN flevaluation.freelancer freelancer  GROUP BY freelancer.id ORDER BY NumberofData DESC')->getResult();
 
 
 
-        $chartProjectsJobowner = $this->getProjectsJobownerChart('Job Owner By Projects', $projectsByJobOwner);
-        $chartJobOwnerByReputition = $this->getProjectsJobownerChart('Job Owner By Reputition', $jobOwnerByReputition);
+        $chartProjectsJobowner             = $this->getProjectsJobownerChart('Job Owner By Projects', $projectsByJobOwner);
+        $chartJobOwnerByReputation         = $this->getProjectsJobownerChart('Job Owner By Reputition', $jobOwnerByReputition);
         $chartFreelancersByAcceptedProject = $this->getProjectsJobownerChart('Freelancers By Projects', $freelancersByAcceptedProject);
-        $chartFreelancersByReputation = $this->getProjectsJobownerChart('Freelancers By Reputation', $freelancersByReputation); 
+        $chartFreelancersByReputation      = $this->getProjectsJobownerChart('Freelancers By Reputation', $freelancersByReputation); 
 
         return $this->render('admin/dashboard/index.html.twig', 
                     array(
                             'chartProjectsJobowner' => $chartProjectsJobowner,
-                            'chartJobOwnerByReputition' => $chartJobOwnerByReputition,
+                            'chartJobOwnerByReputation' => $chartJobOwnerByReputation,
                             'chartFreelancersByAcceptedProject' => $chartFreelancersByAcceptedProject,
                             'chartFreelancersByReputation'      => $chartFreelancersByReputation
                         ));
