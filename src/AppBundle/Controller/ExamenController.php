@@ -27,6 +27,19 @@ class ExamenController extends Controller
     {
         return $this->render('jobowner/examen/new_exam.html.twig',array("project"=>$id));
     }
+
+    public function examResultAction($score)
+    {
+
+
+
+        return $this->render('jobowner/examen/result.html.twig',array("score"=>$score));
+    }
+
+
+
+
+
     public function getAction($id)
     {
         //connexion

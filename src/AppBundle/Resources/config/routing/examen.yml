@@ -9,3 +9,6 @@ examen_new_ajax:
 get_test:
     path:     /get_examen/{id}
     defaults: { _controller: "AppBundle:Examen:get" }
+result_test:
+    path:     /result_exam/{id}
+    defaults: { _controller: "AppBundle:Examen:examResult" }
