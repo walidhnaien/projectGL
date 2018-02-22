@@ -1,0 +1,11 @@
+examen_project_new:
+    path:     /new-exam/{id}
+    defaults: { _controller: "AppBundle:Examen:new" }
+    methods:  [GET, POST]
+
+examen_new_ajax:
+    path:     /new_examen
+    defaults: { _controller: "AppBundle:Examen:exam" }
+get_test:
+    path:     /get_examen/{id}
+    defaults: { _controller: "AppBundle:Examen:get" }

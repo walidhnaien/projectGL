@@ -24,7 +24,7 @@
     </table>
 
     <ul class="form-group col-md-3">
-            <a href="{{ path('demands_index') }}" class="btn btn-default"><i class="fa fa-list">  Back to the list</i></a>
+            <a href="{{ path('freelancer_home') }}" class="btn btn-default"><i class="fa fa-list">  Back to the list</i></a>
         {% if is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
 
             <a href="{{ path('demands_edit', { 'id': demand.id }) }}" class="btn btn-default"> <i class="fa fa-pencil"></i>  Edit</a>

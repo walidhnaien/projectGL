@@ -1,0 +1,288 @@
+{% extends 'indexFront.html.twig' %}
+
+{% block body %}
+    <style>#res{display:none;}</style>
+    <h1>Examens</h1>
+    <br/>    <br/><input type="hidden" id="pr" value="{{ project }}"/>
+    <div id="res" class="tabcontent wow fadeInUp animated">
+        <div class="content">
+            <div class="container-fluid">
+                <br/>
+                <h2 class="text-center text-success">Examen enregistré avec succès.</h2>
+                <br/>    <br/>
+                <div class="col-md-12" id="res-info">
+
+                </div>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+    <div id="q0" class="tabcontent wow fadeInUp animated" style="display:block;">
+        <div class="content">
+                 <div class="container-fluid">
+                     <br/>
+                         <h2 class="text-center text-success">Lancer un nouveau examen</h2>
+                         <br/>    <br/>
+                         <div class="col-md-12">
+                             <div class="col-md-2"></div>
+                             <div class="col-md-8">
+                                 <ul  class="list-group">
+                                     <li  class="list-group-item list-group-item-danger text-center">L'examen doit contenir 5 questions.<br/></li>
+                                     <li  class="list-group-item list-group-item-danger  text-center">Pour chaque question vous devez fournir trois réponses dont une est valide.<br/></li>
+                                     <li  class="list-group-item list-group-item-danger  text-center">La réponse valide doit être cochée.</li>
+                                 </ul>
+                             </div>
+                             <div class="col-md-2"></div>
+                         </div>
+                     <span class="text-danger" id="alert-info"></span>
+                     <div class="col-md-12">
+                         <div class="form-group">
+                             <label for="titre">Titre Examen</label>
+                             <input type="text" id="titre" class="form-control"/>
+                         </div>
+                         <div class="form-group">
+                             <label for="titre">Description</label>
+                             <textarea id="desc" class="form-control"></textarea>
+                         </div>
+                         <div class="form-group">
+                             <label for="titre">Date examen</label>
+                             <input type="date" id="date" class="form-control"/>
+                         </div>
+                     </div>
+                         <br/>    <br/>
+                         <div class="text-center">
+                             <button onclick="quest()" class="btn btn-primary"><i class="fa fa-bullhorn"></i>  Commencer</button>
+                         </div>
+
+                 </div>
+             </div>
+     </div>
+    <div class="tab-content box-questions">
+        <div class="contain row avis" >
+            <div class="tab" id="tabs-bts">
+
+            </div>
+            <div id="questions-here">
+
+            </div>
+
+
+        </div>
+    </div>
+
+<script>
+    function questions(){
+        var num_stud=5;
+
+        for(i=1;i<=num_stud;i++) {
+            j = i+1;
+            $('#tabs-bts').append('<button id="btn'+i+'" disabled class="tablinks t'+i+'" onclick="back_quest('+j+')">Q'+i+'</button>');
+        }
+
+        var i=0;
+        var a =1;
+        var b =2;
+        var c =3;
+
+        var newdiv;
+        var divIdName;
+        for(i=1;i<=num_stud;i++)
+        {
+            newdiv = document.createElement('div');
+            divIdName = 'qu'+i;
+            newdiv.setAttribute('id',divIdName);
+            newdiv.setAttribute('class','tabcontent');
+            if(i==1){
+                newdiv.innerHTML = '<h3 class="tab-title question">Question N°'+i+'</h3><div class="content"><div class="container-fluid"><div class="form-group"><label for="que'+i+'">Enoncé</label><textarea id="que'+i+'" class="form-control"></textarea><span class="text-danger" id="alert-q'+i+'"></span><br/><br/><span class="text-danger" id="alert-valide-'+i+'"></span><label for="q'+i+'r'+a+'">Réponse1</label><input type="text" id="q'+i+'r'+a+'" class="form-control"/><span class="text-danger" id="alert-q'+i+'r'+a+'"></span><input type="radio" id="q'+i+'v'+a+'" class="form-control"/><label class="text-success"  for="q'+i+'v'+a+'">Valide</label><br/><label for="q'+i+'r'+b+'">Réponse2</label><input type="text" id="q'+i+'r'+b+'" class="form-control"/><span class="text-danger" id="alert-q'+i+'r'+b+'"></span><input type="radio" id="q'+i+'v'+b+'"  class="form-control"/><label class="text-success"  for="q'+i+'v'+b+'">Valide</label><br/> <label for="q'+i+'r'+c+'">Réponse3</label><input type="text" id="q'+i+'r'+c+'" class="form-control"/>  <span class="text-danger" id="alert-q'+i+'r'+c+'"></span><input type="radio" id="q'+i+'v'+c+'" class="form-control"/><label class="text-success"  for="q'+i+'v'+c+'">Valide</label><br/><div class="col-md-12"><br/><br/><div class="col-md-6"> </div><div class="col-md-6"><button onclick="quest_check('+i+')" class="btn btn-success pull-right"><i class="fa fa-arrow-right"></i>Suivant</button> </div></div></div></div></div>';
+
+            }else if(i==num_stud){
+                newdiv.innerHTML = '<h3 class="tab-title question">Question N°'+i+'</h3><div class="content"><div class="container-fluid"><div class="form-group"><label for="que'+i+'">Enoncé</label><textarea  id="que'+i+'" class="form-control"></textarea><span class="text-danger" id="alert-q'+i+'"></span><br/><br/><span class="text-danger" id="alert-valide-'+i+'"></span><label for="q'+i+'r'+a+'">Réponse1</label><input type="text" id="q'+i+'r'+a+'" class="form-control"/><span class="text-danger" id="alert-q'+i+'r'+a+'"></span><input type="radio" id="q'+i+'v'+a+'" class="form-control"/><label class="text-success"  for="q'+i+'v'+a+'">Valide</label><br/><label for="q'+i+'r'+b+'">Réponse2</label><input type="text" id="q'+i+'r'+b+'" class="form-control"/><span class="text-danger" id="alert-q'+i+'r'+b+'"></span><input type="radio" id="q'+i+'v'+b+'"  class="form-control"/><label class="text-success"  for="q'+i+'v'+b+'">Valide</label><br/> <label for="q'+i+'r'+c+'">Réponse3</label><input type="text" id="q'+i+'r'+c+'" class="form-control"/>  <span class="text-danger" id="alert-q'+i+'r'+c+'"></span><input type="radio" id="q'+i+'v'+c+'" class="form-control"/><label class="text-success"  for="q'+i+'v'+c+'">Valide</label><br/><div class="col-md-12"><br/><br/><div class="col-md-6"><button onclick="back_quest('+i+')" class="btn btn-warning pull-left"><i class="fa fa-arrow-left"></i>Précedent</button> </div><div class="col-md-6"><button onclick="add_exam()" class="btn btn-primary pull-right" id="new-exam"><i class="fa fa-check"></i>Valider</button> </div></div></div></div></div>';
+
+            }else{
+                newdiv.innerHTML = '<h3 class="tab-title question">Question N°'+i+'</h3><div class="content"><div class="container-fluid"><div class="form-group"><label for="que'+i+'">Enoncé</label><textarea  id="que'+i+'" class="form-control"></textarea><span class="text-danger" id="alert-q'+i+'"></span><br/><br/><span class="text-danger" id="alert-valide-'+i+'"></span><label for="q'+i+'r'+a+'">Réponse1</label><input type="text" id="q'+i+'r'+a+'" class="form-control"/><span class="text-danger" id="alert-q'+i+'r'+a+'"></span><input type="radio" id="q'+i+'v'+a+'" class="form-control"/><label class="text-success"  for="q'+i+'v'+a+'">Valide</label><br/><label for="q'+i+'r'+b+'">Réponse2</label><input type="text" id="q'+i+'r'+b+'" class="form-control"/><span class="text-danger" id="alert-q'+i+'r'+b+'"></span><input type="radio" id="q'+i+'v'+b+'"  class="form-control"/><label class="text-success"  for="q'+i+'v'+b+'">Valide</label><br/> <label for="q'+i+'r'+c+'">Réponse3</label><input type="text" id="q'+i+'r'+c+'" class="form-control"/>  <span class="text-danger" id="alert-q'+i+'r'+c+'"></span><input type="radio" id="q'+i+'v'+c+'" class="form-control"/><label class="text-success"  for="q'+i+'v'+c+'">Valide</label><br/><div class="col-md-12"><br/><br/><div class="col-md-6"><button onclick="back_quest('+i+')" class="btn btn-warning pull-left"><i class="fa fa-arrow-left"></i>Précedent</button> </div><div class="col-md-6"><button onclick="quest_check('+i+')" class="btn btn-success pull-right"><i class="fa fa-arrow-right"></i>Suivant</button> </div></div></div></div></div>';
+
+            }
+                //'<div id="box'+i+'">Testing 123</div>';
+            $('#questions-here').append(newdiv);
+        }
+    }
+    function openTab(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";     }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {           tablinks[i].className = tablinks[i].className.replace(" active", "");    }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        //evt.currentTarget.className += " active";
+
+
+    }
+    // Get the element with id="defaultOpen" and click on it
+    //document.getElementById("defaultOpen").click();
+    event = "tab";
+
+    function quest(){
+        var titre = $('#titre').val();
+        var desc = $('#desc').val();
+        var date = $('#date').val();
+        if(titre==""||desc==""||date==""){
+            $('#alert-info').css('display','block');
+            $('#alert-info').html('Veuillez remplir tous les champs');
+        }else{
+            $('alert_info').css('display','none');
+            openTab(event, 'qu1');
+            document.getElementById('btn1').className +=" active";
+            document.getElementById('btn1').disabled = false;
+            $('.box-questions').css('display','block');
+        }
+
+
+
+    }
+
+    function back_quest(n){
+            n = n-1;
+            openTab(event, 'qu'+n);
+            document.getElementById('btn'+n).className +=" active";
+            document.getElementById('btn'+n).disabled = false;
+            $('.box-questions').css('display','block');
+            $('#alert-valide-'+n).css('display','none');
+            $('#alert-q'+n).css('display','none');
+            $('#alert-q'+n+'r1').css('display','none');
+            $('#alert-q'+n+'r2').css('display','none');
+            $('#alert-q'+n+'r3').css('display','none');
+    }
+    function quest_check(n){
+        var nn = n+1;
+        var enonce = $('#que'+n).val();
+        var r1 = $('#q'+n+'r'+1).val();
+        var r2 = $('#q'+n+'r'+2).val();
+        var r3 = $('#q'+n+'r'+3).val();
+        var valide= true;
+
+        if(document.getElementById('q'+n+'v1').checked||document.getElementById('q'+n+'v2').checked||document.getElementById('q'+n+'v3').checked) {
+            valide= true;
+        }else{
+            valide = false;
+        }
+        if(enonce!=""&&r1!=""&&r2!=""&&r3!=""&&valide==true){
+            openTab(event, 'qu'+nn);
+            document.getElementById('btn'+nn).className +=" active";
+            document.getElementById('btn'+nn).disabled = false;
+        }else{
+            if(valide==false){
+                $('#alert-valide-'+n).css('display','block');
+                $('#alert-valide-'+n).text('Vous devez cocher la réponse valide');
+            }else{
+                $('#alert-valide-'+n).css('display','none');
+                $('#alert-valide-'+n).text('');
+            }
+            if(enonce==""){
+                alert(enonce);
+                $('#alert-q'+n).css('display','block');
+                $('#alert-q'+n).text('Vous devez remplir l\'enonce de la question');
+            }else{
+                $('#alert-q'+n).css('display','none');
+                $('#alert-q'+n).text('');
+            }
+            if(r1==""){
+                $('#alert-q'+n+'r1').css('display','block');
+                $('#alert-q'+n+'r1').text('Vous devez remplir la réponse');
+            }else{
+                $('#alert-q'+n+'r1').css('display','none');
+                $('#alert-q'+n+'r1').text('');
+            }
+            if(r2==""){
+                $('#alert-q'+n+'r2').css('display','block');
+                $('#alert-q'+n+'r2').text('Vous devez remplir la réponse');
+            }else{
+                $('#alert-q'+n+'r2').css('display','none');
+                $('#alert-q'+n+'r2').text('');
+            }
+            if(r3==""){
+                $('#alert-q'+n+'r3').css('display','block');
+                $('#alert-q'+n+'r3').text('Vous devez remplir la réponse');
+            }else{
+                $('#alert-q'+n+'r3').css('display','none');
+                $('#alert-q'+n+'r3').text('');
+            }
+        }
+
+
+
+
+    }
+
+</script>
+
+    <script>
+        $(document).on('click', '#new-exam', function(){
+            console.log('key listen');
+            //console.log($(this).val());
+            var num_stud=5;
+            var datas = "";
+            var titre = $('#titre').val();
+            var desc = $('#desc').val();
+            var date = $('#date').val();
+            var project = $('#pr').val();
+            datas = datas+"titre="+titre+"&description="+desc+"&date="+date+"&project="+project+"&";
+            for(i=1;i<=num_stud;i++) {
+                var enonce = $('#que'+i).val();
+                var r1 = $('#q'+i+'r'+1).val();
+                var r2 = $('#q'+i+'r'+2).val();
+                var r3 = $('#q'+i+'r'+3).val();
+                var valide= true;
+
+                if(document.getElementById('q'+i+'v1').checked){
+                    valide = "r1";
+                }else if(document.getElementById('q'+i+'v2').checked){
+                    valide = "r2";
+                }else{
+                    valide = "r3";
+
+                }
+                if(i==num_stud){
+                    datas = datas + "enonce"+i+"="+enonce+"&rep"+i+"1="+r1+"&rep"+i+"2="+r2+"&rep"+i+"3="+r3+"&valide"+i+"="+valide;
+
+                }else{
+                    datas = datas + "enonce"+i+"="+enonce+"&rep"+i+"1="+r1+"&rep"+i+"2="+r2+"&rep"+i+"3="+r3+"&valide"+i+"="+valide+"&";
+                }
+            }
+            alert(datas);
+            $.ajax({
+
+                url: '{{ path('examen_new_ajax') }}',
+                method: "POST",
+                data: datas ,
+                dataType: 'html',
+                success: function(result, request) {
+                    var parsedData =JSON.parse(result);
+                    //var parsedData =result;
+                    console.log(parsedData);
+                    if(parsedData.status ==='success'){
+                        $('#res').css('display','block');
+                        $('.box-questions').css('display','none');
+
+                        //$('#res-info').html('<label>Titre</label><br/><label>'+titre+'</label><br/>'+'<label>Description</label><p>'+desc+'</p><br/>'+'<label>DateExamen</label><label>'+date+'</label>')
+                        $('#res-info').html(parsedData.data);
+                    }else{
+                    }
+                }
+            });
+        });
+        function add_exam(){
+
+        }
+
+
+    </script>
+{% endblock body %}

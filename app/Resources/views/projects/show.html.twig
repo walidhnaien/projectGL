@@ -47,18 +47,19 @@
 
 
         {% if is_granted('ROLE_FREE') or is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('demands_add',{ 'id': project.id }) }}" class="btn btn-default" >Get a TEST</a>
+            <a href="{{ path('get_test',{ 'id': project.id }) }}" class="btn btn-default" >Get a TEST</a>
 
-            <a href="{{ path('demands_add',{ 'id': project.id }) }}" class="btn btn-default" {% if test == false %}{{ 'disabled'}}{% endif %} > Candidate sending</a>
+            <a href="{{ path('demands_add',{ 'id': project.id }) }}" class="btn btn-default" {% if test == true %}{{ 'disabled'}}{% endif %} > Candidate sending</a>
 {% endif %}
 
         {% if is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('projects_index') }}" class="btn btn-default"><i class="fa fa-list" style=""></i> Back to the list</a>
+            <a href="{{ path('jobowner_home') }}" class="btn btn-default"><i class="fa fa-list" style=""></i> Back to the list</a>
             <a href="{{ path('projects_edit', { 'id': project.id }) }}" class="btn btn-default"><i class="fa fa-pencil" style=""></i>  Edit</a>
             <a href="{{ path('demandByProject_index',{'id': project.id }) }}" class="btn btn-default"> <i class="fa fa-check-square-o"></i>  Succeded candidates in test</a>
+            <a href="{{ path('examen_project_new',{'id': project.id }) }}" class="btn btn-default"> <i class="fa fa-plus"></i> Add a new test </a>
 
 
-    <div class="col-md-1">
+            <div class="col-md-1">
             {{ form_start(delete_form) }}
                 <button type="submit" value="Delete" class="btn btn-default"><i class="fa fa-trash">  Delete</i></button>
             {{ form_end(delete_form) }}

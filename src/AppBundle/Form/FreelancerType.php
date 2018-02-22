@@ -23,7 +23,7 @@ class FreelancerType extends AbstractType
             ->add('address')
             ->add('skills')
             ->add('disponible')
-            ->add('cv', FileType::class, array('label' => 'Cv (PDF file)'))
+            ->add('cv', FileType::class, array('label' => 'Curriculum Vitae (PDF file)','data_class' => null))
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'Email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'Username', 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(

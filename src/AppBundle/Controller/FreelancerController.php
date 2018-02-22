@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FreelancerController extends Controller
 {
+
     /**
      *
      * @Route("/edit", name="freelancer_edit")
@@ -32,7 +33,9 @@ class FreelancerController extends Controller
         foreach($freelancers as $f){
             $freelancer = $f;
         }
-
+        $freelancer->setEmail($user->getEmail());
+        $freelancer->setUsername($user->getUsername());
+        $freelancer->setPlainPassword($user->getPlainPassword());
         $editForm = $this->createForm('AppBundle\Form\FreelancerType', $freelancer);
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -40,7 +43,7 @@ class FreelancerController extends Controller
             $user->setEmail($user->getEmail());
             $user->setUsername($user->getUsername());
             $user->setPlainPassword($user->getPlainPassword());
-            //$deleteForm = $this->createDeleteForm($freelancer);
+//$deleteForm = $this->createDeleteForm($freelancer);
             $userManager->updateUser($user);
             $em->flush();
 
@@ -85,7 +88,7 @@ class FreelancerController extends Controller
                 ->setParameter('requiredskills','%'.$search.'%')
                 ->getQuery()
                 ->getResult();
-            //var_dump($freelancers);
+            #var_dump($ps);
         }
 
         /*

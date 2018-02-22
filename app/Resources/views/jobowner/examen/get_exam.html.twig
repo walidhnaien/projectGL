@@ -1,0 +1,259 @@
+{% extends 'indexFront.html.twig' %}
+
+{% block body %}
+
+    <style>#res{display:none;}</style>
+    <h1>Exam</h1>
+    <br/>    <br/><input type="hidden" id="pr" value="{{ project }}"/>
+    <br/>    <br/><input type="hidden" id="ex" value="{{ examen.id }}"/>
+    <div id="res" class="tabcontent wow fadeInUp animated">
+        <div class="content">
+            <div class="container-fluid">
+                <br/>
+                <h2 class="text-center text-success">End of the Exam.</h2>
+                <br/>    <br/>
+                <div class="col-md-12" id="res-info">
+
+                </div>
+                <br/>
+                <br/>
+            </div>
+        </div>
+    </div>
+    <div id="q0" class="tabcontent wow fadeInUp animated" style="display:block;">
+        <div class="content">
+            <div class="container-fluid">
+                <br/>
+                <h2 class="text-center text-success">Get an Exam</h2>
+                <br/>    <br/>
+
+                <span class="text-danger" id="alert-info"></span>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Exam Title</label><br/>
+                        <label>{{ examen.titre }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label><br/>
+                        <p>{{ examen.description }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Exam Title</label><br/>
+                        <label>{{ examen.dateEx|date('d-m-y') }}</label>
+                    </div>
+                </div>
+                <br/>    <br/>
+                <div class="text-center">
+                    <button onclick="quest()" class="btn btn-primary"><i class="fa fa-bullhorn"></i>  Start Test</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="tab-content box-questions">
+        <div class="contain row avis" >
+            <div class="tab" id="tabs-bts">
+
+            </div>
+            <div id="questions-here">
+                {% set i =0 %}
+                {% for q in questions %}
+                    {% set i = i+1 %}
+                    <div id="qu{{ i }}" class="tabcontent">
+
+                                <h3 class="tab-title question">Question N°{{ i }}</h3>
+                                <div class="content">
+                                    <div class="container-fluid">
+                                        <span class="text-danger" id="error-q{{ i }}"></span>
+                                        <div class="form-group">
+                                            <label for="que'+i+'">Question detail</label>
+                                            <p> {{ q.question }} </p>
+                                            {% set j =0 %}
+                                            {% for c in choix[i] %}
+                                                {% set j=j+1 %}
+                                                {% if c.etat == 'Valide' %}
+                                                    <input type="hidden" id="valide-q{{ i }}" value="rep{{ i~j }}" >
+                                                {% endif %}
+                                                <label>Réponse{{ j }}</label><br/>
+                                                <label>{{ c.reponse }}</label><br/>
+                                                <input id="rep{{ i~j }}" type="radio" name="r{{ i }}" class="form-control"/>
+                                                <label for="rep{{ i~j }}">Valid</label><br/>
+                                            {% endfor %}
+
+                                        </div>
+                                        {% if i==1 %}
+                                            <div class="col-md-12">
+
+                                                <div class="col-md-6">
+                                                    <button onclick="quest_check('{{ i }}')" class="btn btn-success pull-right"><i class="fa fa-arrow-right"></i>Next</button>
+                                                </div>
+                                            </div>
+                                        {% elseif i==5 %}
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <button onclick="back_quest('{{ i }}')" class="btn btn-warning pull-left"><i class="fa fa-arrow-left"></i>Previous</button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button onclick="add_exam()" class="btn btn-primary pull-right" id="new-exam"><i class="fa fa-check"></i>Validate</button>                                            </div>
+                                            </div>
+
+                                        {% else %}
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <button onclick="back_quest('{{ i }}')" class="btn btn-warning pull-left"><i class="fa fa-arrow-left"></i>Previous</button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button onclick="quest_check('{{ i }}')" class="btn btn-success pull-right"><i class="fa fa-arrow-right"></i>Next</button>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+    </div>
+
+    <script>
+        function questions(){
+            var num_stud=5;
+
+            for(i=1;i<=num_stud;i++) {
+                j = i+1;
+                $('#tabs-bts').append('<button id="btn'+i+'" disabled class="tablinks t'+i+'" onclick="back_quest('+j+')">Q'+i+'</button>');
+            }
+
+        }
+        function openTab(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";     }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {           tablinks[i].className = tablinks[i].className.replace(" active", "");    }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            //evt.currentTarget.className += " active";
+
+
+        }
+        // Get the element with id="defaultOpen" and click on it
+        //document.getElementById("defaultOpen").click();
+        event = "tab";
+
+        function quest(){
+            var titre = $('#titre').val();
+            var desc = $('#desc').val();
+            var date = $('#date').val();
+            if(titre==""||desc==""||date==""){
+                $('#alert-info').css('display','block');
+                $('#alert-info').html('Please, fields are mandatory');
+            }else{
+                $('alert_info').css('display','none');
+                openTab(event, 'qu1');
+                document.getElementById('btn1').className +=" active";
+                document.getElementById('btn1').disabled = false;
+                $('.box-questions').css('display','block');
+            }
+
+
+
+        }
+
+        function back_quest(n){
+            n = parseInt(n)-1;
+            openTab(event, 'qu'+n);
+            document.getElementById('btn'+n).className +=" active";
+            document.getElementById('btn'+n).disabled = false;
+            $('.box-questions').css('display','block');
+            $('#alert-valide-'+n).css('display','none');
+            $('#alert-q'+n).css('display','none');
+            $('#alert-q'+n+'r1').css('display','none');
+            $('#alert-q'+n+'r2').css('display','none');
+            $('#alert-q'+n+'r3').css('display','none');
+        }
+        function quest_check(n){
+            var valide= true;
+
+            if(document.getElementById('rep'+n+'1').checked||document.getElementById('rep'+n+'2').checked||document.getElementById('rep'+n+'3').checked) {
+                valide= true;
+            }else{
+                valide = false;
+            }
+            if(valide){
+                var nn = parseInt(n)+1;
+                openTab(event, 'qu'+nn);
+                document.getElementById('btn'+nn).className +=" active";
+                document.getElementById('btn'+nn).disabled = false;
+            }else{
+                $('#error-q'+n).css('display','block');
+                $('#error-q'+n).text('Veuillez choisir une réponse');
+            }
+        }
+
+    </script>
+
+    <script>
+        ///envoi controller
+        $(document).on('click', '#new-exam', function(){
+            console.log('key listen');
+            //console.log($(this).val());
+            var num_stud=5;
+            var datas = "";
+            var score = 0;
+            for(i=1;i<=num_stud;i++) {
+
+
+                if(document.getElementById('rep'+i+'1').checked){
+                    coche = "rep"+i+"1";
+                }else if(document.getElementById('rep'+i+'2').checked){
+                    coche = "rep"+i+"2";
+                }else{
+                    coche = "rep"+i+"3";
+
+                }
+                var rep_val = document.getElementById('#valide-q'+i).value;
+                //var rep-val = $("#valide-q"+i).val();
+                if(coche==rep_val){
+                    score = score+1;
+                }
+
+
+            }
+            var projet = $('#pr').val();
+            var examen = $('#ex').val();
+            datas = "score="+score+"&projet="+projet+"&examen="+examen;
+            $.ajax({
+
+                url: '{{ path('examen_new_ajax') }}',
+                method: "POST",
+                data: datas ,
+                dataType: 'html',
+                success: function(result, request) {
+                    var parsedData =JSON.parse(result);
+                    //var parsedData =result;
+                    console.log(parsedData);
+                    if(parsedData.status ==='success'){
+                        $('#res').css('display','block');
+                        $('.box-questions').css('display','none');
+
+                        //$('#res-info').html('<label>Titre</label><br/><label>'+titre+'</label><br/>'+'<label>Description</label><p>'+desc+'</p><br/>'+'<label>DateExamen</label><label>'+date+'</label>')
+                        //$('#res-info').html(parsedData.data);
+                    }else{
+                    }
+                }
+            });
+        });
+
+
+
+    </script>
+{% endblock body %}
