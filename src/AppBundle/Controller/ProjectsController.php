@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Examen;
+use AppBundle\Entity\Freelancer;
 use AppBundle\Entity\Projects;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -70,23 +72,37 @@ class ProjectsController extends Controller
      * @Route("/{id}", name="projects_show")
      * @Method("GET")
      */
-    public function showAction(Projects $project)
+    public function showAction($id)
     {
-        $deleteForm = $this->createDeleteForm($project);
         $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('AppBundle:Projects')->find($id);
+        $deleteForm = $this->createDeleteForm($project);
+
         $user = $this->getUser();
+
         $free = $em->getRepository('AppBundle:Freelancer')->findBy(array("user"=>$user));
+        $freelancer = new Freelancer();
         foreach ($free as $freel){
             $freelancer = $freel;
         }
 
+        $exs = $em->getRepository('AppBundle:Examen')->findBy(array("project"=>$project));
+        $examen = new Examen();
+        foreach($exs as $e){
+            $examen = $e;
+        }
+
+
+
         $test = $this->getDoctrine()
             ->getRepository('AppBundle:Tests')
-            ->findOneBy(array('freelancer' => $freelancer));
+            ->findBy(array('freelancer' => $freelancer,'examen'=>$examen));
+
+        $nb = count($test);
 
 
         return $this->render('projects/show.html.twig', array(
-            'project' => $project,'test' => $test,'delete_form' => $deleteForm->createView()
+            'project' => $project,'examen'=>$examen,'test' => $nb,'free'=>$freelancer,'project'=>$project,'delete_form' => $deleteForm->createView()
         ));
     }
 

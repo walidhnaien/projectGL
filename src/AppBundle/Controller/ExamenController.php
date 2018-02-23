@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 use AppBundle\Entity\Jobowner;
+use AppBundle\Entity\Freelancer;
 use AppBundle\Entity\Examen;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\Choix;
+use AppBundle\Entity\Tests;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -17,7 +19,6 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ExamenController extends Controller
@@ -27,18 +28,6 @@ class ExamenController extends Controller
     {
         return $this->render('jobowner/examen/new_exam.html.twig',array("project"=>$id));
     }
-
-    public function examResultAction($score)
-    {
-
-
-
-        return $this->render('jobowner/examen/result.html.twig',array("score"=>$score));
-    }
-
-
-
-
 
     public function getAction($id)
     {
@@ -151,6 +140,69 @@ class ExamenController extends Controller
        // return $this->render('project/examen/new_exam.html.twig');
 
     }
+    public function passAction(Request $request)
+    {
 
+        //connexion
+        $em = $this->getDoctrine()->getManager();
+
+        $status = 'erreur';
+        $html = '';
+        $valide = false;
+        if ($request->isMethod('POST')) {
+
+            if ($request->isXmlHttpRequest()) {
+
+                    //entrée valide
+                    $valide = true;
+                    //extraire les données de l'url
+                    $pr = $request->request->get('project');
+                    $project = $em->getRepository('AppBundle:Projects')->find($pr);
+                    $ex = $request->request->get('exam');
+                    $examen = $em->getRepository('AppBundle:Examen')->find($ex);
+                    $score = $request->request->get('score');
+
+                    //le freelancer connecté
+                    $user = $this->getUser();
+                    $freelancers = $em->getRepository('AppBundle:Freelancer')->findBy(array("user" => $user));
+                    $freelancer = new Freelancer();
+                    foreach ($freelancers as $f) {
+                        $freelancer = $f;
+                    }
+
+                    $test = new Tests();
+                    $test->setExamen($examen);
+                    $test->setFreelancer($freelancer);
+                    $test->setTestdescription($score);
+                    $test->setTestdate(new \DateTime());
+                    $em->persist($test);
+
+
+            }
+        }
+
+        if($valide){
+            $data = $this->render('jobowner/examen/result.html.twig', array(
+                'titre'=>$examen->getTitre(),'score'=>$test->getTestdescription()
+            ));
+            $status = 'success';
+            $html = $data->getContent();
+            $em->flush();
+        }
+
+
+
+
+
+        $jsonArray = array(
+            'status' => $status,
+            'data' => $html,
+        );
+
+        $response = new Response(json_encode($jsonArray));
+        $response->headers->set('Content-Type', 'application/json; charset=utf-8');
+
+        return $response;
+    }
     
 }

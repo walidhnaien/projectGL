@@ -94,7 +94,7 @@
                                                     <button onclick="back_quest('{{ i }}')" class="btn btn-warning pull-left"><i class="fa fa-arrow-left"></i>Previous</button>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button onclick="add_exam()" class="btn btn-primary pull-right" id="new-exam"><i class="fa fa-check"></i>Validate</button>                                            </div>
+                                                    <button class="btn btn-primary pull-right" id="new-exam"><i class="fa fa-check"></i>Validate</button>                                            </div>
                                             </div>
 
                                         {% else %}
@@ -220,7 +220,7 @@
                     coche = "rep"+i+"3";
 
                 }
-                var rep_val = document.getElementById('#valide-q'+i).value;
+                var rep_val = document.getElementById('valide-q'+i).value;
                 //var rep-val = $("#valide-q"+i).val();
                 if(coche==rep_val){
                     score = score+1;
@@ -228,29 +228,36 @@
 
 
             }
-            var projet = $('#pr').val();
-            var examen = $('#ex').val();
-            datas = "score="+score+"&projet="+projet+"&examen="+examen;
-            $.ajax({
+            $('#res').css('display','block');
+            $('.box-questions').css('display','none');
+            if(score<=4){
+                $('#res-info').html("<h3 class='text-danger'>You didn\'t get the minimum required score</h3>");
+            }else{
+                var projet = $('#pr').val();
+                var examen = $('#ex').val();
+                datas = "score="+score+"&project="+projet+"&exam="+examen;
+                $.ajax({
 
-                url: '{{ path('examen_new_ajax') }}',
-                method: "POST",
-                data: datas ,
-                dataType: 'html',
-                success: function(result, request) {
-                    var parsedData =JSON.parse(result);
-                    //var parsedData =result;
-                    console.log(parsedData);
-                    if(parsedData.status ==='success'){
-                        $('#res').css('display','block');
-                        $('.box-questions').css('display','none');
+                    url: '{{ path('result_test') }}',
+                    method: "POST",
+                    data: datas ,
+                    dataType: 'html',
+                    success: function(result, request) {
+                        var parsedData =JSON.parse(result);
+                        //var parsedData =result;
+                        console.log(parsedData);
 
-                        //$('#res-info').html('<label>Titre</label><br/><label>'+titre+'</label><br/>'+'<label>Description</label><p>'+desc+'</p><br/>'+'<label>DateExamen</label><label>'+date+'</label>')
-                        //$('#res-info').html(parsedData.data);
-                    }else{
+                        if(parsedData.status ==='success'){
+                            //$('#res-info').html('<label>Titre</label><br/><label>'+titre+'</label><br/>'+'<label>Description</label><p>'+desc+'</p><br/>'+'<label>DateExamen</label><label>'+date+'</label>')
+                            $('#res-info').html(parsedData.data);
+
+                        }else{
+                            //ghjghjgh
+                        }
                     }
-                }
-            });
+                });
+            }
+
         });
 
 

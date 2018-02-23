@@ -42,6 +42,12 @@ class Tests
      */
     private $freelancer;
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Examen",inversedBy="id")
+     * @ORM\JoinColumn(name="examen",referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $examen;
 
     /**
      * Get id
@@ -52,6 +58,23 @@ class Tests
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getExamen()
+    {
+        return $this->examen;
+    }
+
+    /**
+     * @param mixed $examen
+     */
+    public function setExamen($examen)
+    {
+        $this->examen = $examen;
+    }
+
 
     /**
      * Set testdate

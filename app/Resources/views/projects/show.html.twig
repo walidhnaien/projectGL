@@ -45,12 +45,10 @@
 
     <ul>
 
-
         {% if is_granted('ROLE_FREE') or is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('get_test',{ 'id': project.id }) }}" class="btn btn-default" >Get a TEST</a>
-
-            <a href="{{ path('demands_add',{ 'id': project.id }) }}" class="btn btn-default" {% if test == true %}{{ 'disabled'}}{% endif %} > Candidate sending</a>
-{% endif %}
+            <a href="{{ path('get_test',{ 'id': project.id }) }}" {% if test !=0 %}{{ 'disabled'}}{% endif %} class="btn btn-default" >Get a TEST</a>
+            <a href="{{ path('demands_add',{ 'id': project.id }) }}" class="btn btn-default" {% if test ==0 %}{{ 'disabled'}}{% endif %} > Candidate sending</a>
+        {% endif %}
 
         {% if is_granted('ROLE_JOOW') or is_granted('ROLE_ADMIN') %}
             <a href="{{ path('jobowner_home') }}" class="btn btn-default"><i class="fa fa-list" style=""></i> Back to the list</a>
