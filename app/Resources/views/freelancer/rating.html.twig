@@ -1,0 +1,26 @@
+{% extends 'indexFront.html.twig' %}
+
+{% block body %}
+    <div class="w3ls-title">
+        <h3 class="agileits-title">Rating freelancer</h3>
+    </div>
+    {{ form_start(freelancer_evaluation_form) }}
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('freelancer_evaluation_form') }}">
+
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            <label for="input-7-xs" class="control-label">Mark Project name \ Freelancer Name</label>
+            <input id="input-7-xs" name="rating" class="rating rating-loading" value="0" data-min="0" data-max="5" data-step="0.5" data-size="xs"><hr/>
+            <input type="hidden" name="freelancer_id" value="2">
+            <input type="hidden" name="jobowner_id" value="5">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group col-md-3">
+            <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> sent rating </button>
+        </div>
+
+    </div>
+
+    {{ form_end(freelancer_evaluation_form) }} 
+{% endblock %}

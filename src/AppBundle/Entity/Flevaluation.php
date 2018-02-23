@@ -38,7 +38,7 @@ class Flevaluation
 
     /**
     *
-    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id")
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id", cascade={"persist"})
     * @ORM\JoinColumn(name="freelancer",referencedColumnName="id",onDelete="CASCADE")
     */
     private $freelancer;

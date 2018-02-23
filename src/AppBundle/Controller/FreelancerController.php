@@ -1,16 +1,17 @@
 <?php
 
 namespace AppBundle\Controller;
-
-use AppBundle\Entity\Freelancer;
-use AppBundle\Form\FreelancerType;
-use AppBundle\Entity\Jobowner;
-use AppBundle\Entity\Projects;
 use Doctrine\DBAL\Cache\ResultCacheStatement;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Freelancer;
+use AppBundle\Form\FreelancerType;
+use AppBundle\Entity\Jobowner;
+use AppBundle\Entity\Projects;
+use AppBundle\Entity\Flevaluation;
+use AppBundle\Form\FlevaluationType;
 
 /**
  * Freelancer controller.
@@ -19,6 +20,51 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FreelancerController extends Controller
 {
+
+    public function __construct()
+    {
+
+    }
+
+
+
+    /**
+     * rating a new freelancer entity.
+     *
+     * @Route("/rating", name="freelancer_rating")
+     */
+    public function ratingAction(Request $request)
+    {
+
+        $freelancer_evaluation_form = $this->createForm('AppBundle\Form\FlevaluationType');
+        $freelancer_evaluation_form->handleRequest($request);
+        
+        if ($freelancer_evaluation_form->isSubmitted() && $freelancer_evaluation_form->isValid()) {
+
+            $freelancerEvaluation = new Flevaluation();
+            /*
+            $freelancer = new Freelancer();
+            $freelancer->setId($request->get('freelancer_id'));
+            $freelancerEvaluation->setFreelancer($freelancer); 
+            */
+            $freelancerEvaluation->setMark($request->get('rating'));
+            $freelancerEvaluation->setJobowner($request->get('jobowner_id'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($freelancerEvaluation);
+            $em->flush();
+
+            return $this->redirectToRoute('freelancer_rating');          
+        }
+          
+
+        return $this->render('freelancer/rating.html.twig', array(
+            'freelancer_evaluation_form' => $freelancer_evaluation_form->createView()
+        ));
+    }
+
+
+
     /**
      *
      * @Route("/edit", name="freelancer_edit")
@@ -60,6 +106,8 @@ class FreelancerController extends Controller
      */
     public function homeAction(Request $request)
     {
+
+
         $em = $this->getDoctrine()->getManager();
         $ps = $em->getRepository('AppBundle:Projects')->findAll();
         $user = $this->getUser();
@@ -85,7 +133,6 @@ class FreelancerController extends Controller
                 ->setParameter('requiredskills','%'.$search.'%')
                 ->getQuery()
                 ->getResult();
-            //var_dump($freelancers);
         }
 
         /*
@@ -94,7 +141,7 @@ class FreelancerController extends Controller
         $form = $this->createForm('AppBundle\Form\FreelancerType', $free);
         $form2 = $this->createForm('AppBundle\Form\JobownerType', $job);*/
         return $this->render('freelancer/home.html.twig', array(
-            'projects' => $ps,'demandes'=>$demands
+            'projects' => $ps,'demandes'=>$demands,
         ));
     }
     /**

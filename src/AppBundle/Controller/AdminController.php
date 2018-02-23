@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
 	public function AdminHomeAction(Request $request)
 	{
-		return $this->render('admin/dashboard/index.html.twig');
+		return $this->redirectToRoute('admin_freelancer');   
 	}
 
 }

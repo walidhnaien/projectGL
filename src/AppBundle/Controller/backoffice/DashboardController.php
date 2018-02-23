@@ -12,28 +12,27 @@ class DashboardController extends Controller
 {
 
 
-	/**
-     * @Route("admin/home/dashboard", name="admin_dashboard")
+     /**
+     * @Route("admin/home/dash", name="admin_dash")
      */
-	public function indexAction()
-	{
+    public function dashAction(){
+        $em = $this->getDoctrine()->getManager();     
 
-        $em = $this->getDoctrine()->getManager();
+        $projectsByJobOwner = $em->createQuery('SELECT jobowner.id, jobowner.socialRaison, jobowner.firstname, jobowner.lastname, COUNT(project.id) AS NumberofData 
+                      FROM AppBundle\Entity\Projects project  JOIN project.jobowner jobowner GROUP BY jobowner.id ORDER BY NumberofData DESC')->getResult();
 
-        $projectsByJobOwner = $em->getRepository('AppBundle:Jobowner')->sortProjectsByJobOwner();
-        $jobOwnerByReputition  = $em->createQuery('SELECT jobowner.id, jobowner.socialRaison, jobowner.firstname, COUNT(joevaluation.mark) AS NumberofData 
+        $jobOwnerByReputation  = $em->createQuery('SELECT jobowner.id, jobowner.socialRaison, jobowner.firstname, SUM(joevaluation.mark) AS NumberofData 
                       FROM AppBundle\Entity\Joevaluation joevaluation  JOIN joevaluation.jobowner jobowner GROUP BY jobowner.id ORDER BY NumberofData DESC')->getResult();
 
+        $freelancersByAcceptedProject = $em->createQuery('SELECT freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData from AppBundle\Entity\Demands demands JOIN demands.freelancer freelancer  WHERE  demands.demandstatus = 1 GROUP BY freelancer.id ORDER BY NumberofData DESC')->getResult();
 
-        $freelancersByAcceptedProject = $em->createQuery('SELECT freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData from AppBundle\Entity\Demands demands
-                                     JOIN demands.freelancer freelancer  WHERE  demands.demandstatus = 1 GROUP BY freelancer.id ORDER BY NumberofData DESC')->getResult();
+        $freelancersByReputation = $em->createQuery('SELECT freelancer.id,freelancer.firstname,freelancer.lastname,SUM(flevaluation.mark) AS NumberofData from AppBundle\Entity\Flevaluation  flevaluation JOIN flevaluation.freelancer freelancer  GROUP BY freelancer.id ORDER BY NumberofData DESC')->getResult();
 
-        $freelancersByReputation = $em->createQuery('SELECT freelancer.id,freelancer.firstname,freelancer.lastname,COUNT(flevaluation.mark) AS NumberofData from AppBundle\Entity\Flevaluation  flevaluation JOIN flevaluation.freelancer freelancer  GROUP BY freelancer.id ORDER BY NumberofData DESC')->getResult();
 
 
 
         $chartProjectsJobowner             = $this->getProjectsJobownerChart('Job Owner By Projects', $projectsByJobOwner);
-        $chartJobOwnerByReputation         = $this->getProjectsJobownerChart('Job Owner By Reputition', $jobOwnerByReputition);
+        $chartJobOwnerByReputation         = $this->getProjectsJobownerChart('Job Owner By Reputition', $jobOwnerByReputation);
         $chartFreelancersByAcceptedProject = $this->getProjectsJobownerChart('Freelancers By Projects', $freelancersByAcceptedProject);
         $chartFreelancersByReputation      = $this->getProjectsJobownerChart('Freelancers By Reputation', $freelancersByReputation); 
 
@@ -45,10 +44,10 @@ class DashboardController extends Controller
                             'chartFreelancersByReputation'      => $chartFreelancersByReputation
                         ));
 
-	}
+    }
 
 
-    private function getProjectsJobownerChart($titleChart, $dataCollection): PieChart
+    public function getProjectsJobownerChart($titleChart, $dataCollection): PieChart
     {
         $chartCollection = [];
         array_push($chartCollection,['','']);
