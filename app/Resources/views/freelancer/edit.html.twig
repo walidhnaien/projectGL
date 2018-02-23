@@ -76,6 +76,13 @@
         </div>
     </div>
     <div class="col-md-12">
+    <div class="form-group col-md-6">
+        {{ form_label(edit_form.cv) }}
+        {{ form_errors(edit_form.cv) }}
+        {{ form_widget(edit_form.cv, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    </div>
+    <div class="col-md-12">
         <div class="form-group col-md-3">
             <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Edit </button>
         </div>

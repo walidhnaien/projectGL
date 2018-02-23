@@ -1,6 +1,7 @@
 {% extends 'indexFront.html.twig' %}
 
 {% block body %}
+    {{ form_start(edit_form) }}
     <div class="w3ls-title">
         <h3 class="agileits-title">Project edit</h3>
     </div>
@@ -54,10 +55,10 @@
         </div>
 </div>
 
-    {{ form_end(edit_form) }}
+
 <div class="col-md-12">
         <div class="col-md-2">
-            <a href="{{ path('projects_index') }}" class="btn btn-default">
+            <a href="{{ path('jobowner_home') }}" class="btn btn-default">
                 <i class="fa fa-list">  Back to the list</i>
             </a>
         </div>
@@ -66,7 +67,7 @@
                 <button type="submit" value="Edit" class="btn btn-default" /> <i class="fa fa-pencil">  Edit</i></button>
 
             </div>
-
+    {{ form_end(edit_form) }}
             <div class="col-md-1">
             {{ form_start(delete_form) }}
                 <button type="submit" value="Delete"  class="btn btn-default"><i class="fa fa-trash">  Delete</i></button>

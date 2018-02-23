@@ -6,3 +6,6 @@ app_jobowner:
     prefix:   /jobowner
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+jobowner_examen:
+    resource: "@AppBundle/Resources/config/routing/examen.yml"
+    prefix:   /examens

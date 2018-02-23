@@ -19,16 +19,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="{{ asset('bundles/app/front/web/css/font-awesome.css') }}" rel="stylesheet"> <!-- font-awesome icons -->
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/modules/star-rating.min.css')}}">
 <link rel="stylesheet" href="{{ asset('bundles/app/front/web/css/jquery.desoslide.css') }}">
-<!-- //Custom Theme files --> 
+<link rel="stylesheet" href="{{ asset('bundles/app/css/examen.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/app/css/my_css2.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/app/css/lightbox.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/app/css/light.css') }}">
+<!-- //Custom Theme files -->
 <!-- js -->
-<script src="{{ asset('bundles/app/front/web/js/jquery-2.2.3.min.js') }}"></script>
+	<!--	<script src="{{ asset('bundles/app/front/web/js/jquery-2.2.3.min.js') }}"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- //js -->
 <!-- web-fonts
 <link href="//fonts.googleapis.com/css?family=Oxygen:300,400,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
  //web-fonts -->
 </head>
-<body> 
+<body onload="questions()">
 	<!-- banner -->
 	<div class="banner">
 		<div class="banner-agileinfo">
@@ -61,6 +66,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<li><a href="about.html"> About</a></li>
 								<li><a href="{{ path('projects_new') }}"> New Project</a></li>
 								<li><a href="{{ path('projects_index') }}"> My Projects</a></li>
+
 								<li><a href="contact.html"> Contact Us</a></li>
 							</ul>
 							<div class="clearfix"> </div>
@@ -75,7 +81,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<ul class="w3nav">
 					<li><a href="{{ path('freelancer_home') }}" class="active"> Home</a></li>
 					<li><a href="about.html"> About</a></li>
-					<li><a href="{{ path('freelancer_edit') }}" > Edit Profil</a></li>
+					<li><a href="{{ path('freelancer_edit') }}" > Edit Profile</a></li>
 					<li><a href="about.html"> About</a></li>
 
 					<li><a href="contact.html"> Contact Us</a></li>
@@ -239,6 +245,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 {{ form_label(form_free.plainPassword.second) }}
                                                 {{ form_errors(form_free.plainPassword.second) }}
                                                 {{ form_widget(form_free.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group col-md-6 ">
+                                                {{ form_label(form_free.cv) }}
+                                                {{ form_errors(form_free.cv) }}
+                                                {{ form_widget(form_free.cv, {'attr': {'class': 'form-control'}}) }}
 											</div>
 										</div>
 										<div class="col-md-12">
