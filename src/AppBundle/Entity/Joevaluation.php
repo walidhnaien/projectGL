@@ -28,20 +28,22 @@ class Joevaluation
      */
     private $mark;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="freelancer", type="string", length=255)
-     */
-    private $freelancer;
+    *
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Jobowner",inversedBy="id", cascade={"persist"})
+    * @ORM\JoinColumn(name="jobowner",referencedColumnName="id",onDelete="CASCADE")
+    */
+    private $jobowner;
 
 
     /**
     *
-    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Jobowner",inversedBy="id")
-    * @ORM\JoinColumn(name="jobowner",referencedColumnName="id",onDelete="CASCADE")
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Freelancer",inversedBy="id", cascade={"persist"})
+    * @ORM\JoinColumn(name="freelancer",referencedColumnName="id",onDelete="CASCADE")
     */
-    private $jobowner;
+    private $freelancer;
+
 
 
     /**

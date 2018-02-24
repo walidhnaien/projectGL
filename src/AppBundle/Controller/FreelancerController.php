@@ -21,40 +21,6 @@ use AppBundle\Form\FlevaluationType;
 class FreelancerController extends Controller
 {
 
-    /**
-     * rating a new freelancer entity.
-     *
-     * @Route("/rating", name="freelancer_rating")
-     */
-    public function ratingAction(Request $request)
-    {
-
-        $freelancer_evaluation_form = $this->createForm('AppBundle\Form\FlevaluationType');
-        $freelancer_evaluation_form->handleRequest($request);
-        
-        if ($freelancer_evaluation_form->isSubmitted() && $freelancer_evaluation_form->isValid()) {
-
-            $freelancerEvaluation = new Flevaluation();
-            /*
-            $freelancer = new Freelancer();
-            $freelancer->setId($request->get('freelancer_id'));
-            $freelancerEvaluation->setFreelancer($freelancer); 
-            */
-            $freelancerEvaluation->setMark($request->get('rating'));
-            $freelancerEvaluation->setJobowner($request->get('jobowner_id'));
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($freelancerEvaluation);
-            $em->flush();
-
-            return $this->redirectToRoute('freelancer_rating');          
-        }
-          
-
-        return $this->render('freelancer/rating.html.twig', array(
-            'freelancer_evaluation_form' => $freelancer_evaluation_form->createView()
-        ));
-    }
 
     /**
      *
@@ -199,18 +165,74 @@ class FreelancerController extends Controller
      * Finds and displays a freelancer entity.
      *
      * @Route("/{id}", name="freelancer_show")
-     * @Method("GET")
+     * 
      */
-    public function showAction(Freelancer $freelancer)
+    public function showAction(Freelancer $freelancer,Request $request)
     {
+        $rating = 0;
+        $freelancer_evaluation_form = $this->createForm('AppBundle\Form\FlevaluationType');
+        $freelancer_evaluation_form->handleRequest($request);
         $deleteForm = $this->createDeleteForm($freelancer);
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $Jobowner = $em->getRepository('AppBundle:Jobowner')->findBy(array("user"=>$user));
+
+         $mark = $em->getRepository("AppBundle:Flevaluation")->createQueryBuilder('fevaluation')
+                ->where('fevaluation.jobowner =   :Jobowner')
+                ->andWhere('fevaluation.freelancer = :freelancer')
+                ->setParameter('Jobowner',$Jobowner[0]->getId())
+                ->setParameter('freelancer',$freelancer->getId())
+                ->getQuery()
+                ->getResult();
+
+
+        if( isset($mark[0]))
+        {
+            $rating = $mark[0]->getMark();
+        }                
+
+        if ($freelancer_evaluation_form->isSubmitted() && $freelancer_evaluation_form->isValid()) {
+
+                if(empty($mark))
+                {
+                    $freelancerEvaluation = new Flevaluation();
+                    $freelancerEvaluation->setMark($request->get('rating'));
+                    $freelancerEvaluation->setFreelancer($freelancer);
+                    $freelancerEvaluation->setJobowner($Jobowner[0]);
+                    $em->persist($freelancerEvaluation);
+                    $em->flush();
+                }
+                else
+                {
+                    $mark[0]->setMark($request->get('rating'));
+                    $mark[0]->setFreelancer($freelancer);
+                    $mark[0]->setJobowner($Jobowner[0]);
+                    $em->persist($mark[0]);
+                    $em->flush();
+                }
+                 $rating = $request->get('rating');
+
+            return $this->render('freelancer/show.html.twig', array(
+                'freelancer' => $freelancer,
+                'mark' => $rating,
+                'freelancer_evaluation_form' => $freelancer_evaluation_form->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+
+        }
+
+        // get mark if exist
+
+    
 
         return $this->render('freelancer/show.html.twig', array(
             'freelancer' => $freelancer,
+            'mark' => $rating,
+            'freelancer_evaluation_form' => $freelancer_evaluation_form->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
 
 
     /**

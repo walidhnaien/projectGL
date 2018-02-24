@@ -115,6 +115,11 @@ class Jobowner
         return $this->id;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function setUser($user)
     {
         $this->user = $user;

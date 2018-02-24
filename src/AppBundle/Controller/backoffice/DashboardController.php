@@ -21,7 +21,7 @@ class DashboardController extends Controller
         $projectsByJobOwner = $em->createQuery('SELECT jobowner.id, jobowner.socialRaison, jobowner.firstname, jobowner.lastname, COUNT(project.id) AS NumberofData 
                       FROM AppBundle\Entity\Projects project  JOIN project.jobowner jobowner GROUP BY jobowner.id ORDER BY NumberofData DESC')->getResult();
 
-        $jobOwnerByReputation  = $em->createQuery('SELECT jobowner.id, jobowner.socialRaison, jobowner.firstname, SUM(joevaluation.mark) AS NumberofData 
+        $jobOwnerByReputation  = $em->createQuery('SELECT jobowner.id, jobowner.socialRaison, jobowner.firstname, jobowner.lastname, SUM(joevaluation.mark) AS NumberofData 
                       FROM AppBundle\Entity\Joevaluation joevaluation  JOIN joevaluation.jobowner jobowner GROUP BY jobowner.id ORDER BY NumberofData DESC')->getResult();
 
         $freelancersByAcceptedProject = $em->createQuery('SELECT freelancer.firstname,freelancer.lastname,COUNT(demands.id) as NumberofData from AppBundle\Entity\Demands demands JOIN demands.freelancer freelancer  WHERE  demands.demandstatus = 1 GROUP BY freelancer.id ORDER BY NumberofData DESC')->getResult();

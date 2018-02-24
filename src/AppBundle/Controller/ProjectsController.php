@@ -7,7 +7,10 @@ use AppBundle\Entity\Freelancer;
 use AppBundle\Entity\Projects;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\JoevaluationType;
+use AppBundle\Entity\Joevaluation;
 
 /**
  * Project controller.
@@ -66,13 +69,13 @@ class ProjectsController extends Controller
         ));
     }
 
-    /**
+          /**
      * Finds and displays a project entity.
      *
      * @Route("/{id}", name="projects_show")
-     * @Method("GET")
+     * 
      */
-    public function showAction($id)
+    public function showAction($id,Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $project = $em->getRepository('AppBundle:Projects')->find($id);
@@ -101,9 +104,73 @@ class ProjectsController extends Controller
         $nb = count($test);
 
 
-        return $this->render('projects/show.html.twig', array(
-            'project' => $project,'examen'=>$examen,'test' => $nb,'free'=>$freelancer,'project'=>$project,'delete_form' => $deleteForm->createView()
+
+        $rating = 0;
+        $jobowner_evaluation_form = $this->createForm('AppBundle\Form\JoevaluationType');
+        $jobowner_evaluation_form->handleRequest($request);
+
+        // get jobowner by project_id
+
+        $Jobowner = $em->getRepository('AppBundle:Jobowner')->find($project->getJobowner()->getId());
+
+        $mark = $em->getRepository("AppBundle:Joevaluation")->createQueryBuilder('joevaluation')
+                ->where('joevaluation.jobowner =   :Jobowner')
+                ->andWhere('joevaluation.freelancer = :freelancer')
+                ->setParameter('Jobowner',$Jobowner->getId())
+                ->setParameter('freelancer',$freelancer->getId())
+                ->getQuery()
+                ->getResult();
+
+
+        if( isset($mark[0]))
+        {
+            $rating = $mark[0]->getMark();
+        }                
+
+        if ($jobowner_evaluation_form->isSubmitted() && $jobowner_evaluation_form->isValid()) {
+
+                if(empty($mark))
+                {
+                    $jobownerEvaluation = new Joevaluation();
+                    $jobownerEvaluation->setMark($request->get('rating'));
+                    $jobownerEvaluation->setFreelancer($freelancer);
+                    $jobownerEvaluation->setJobowner($Jobowner);
+                    $em->persist($jobownerEvaluation);
+                    $em->flush();
+                }
+                else
+                {
+                    $mark[0]->setMark($request->get('rating'));
+                    $mark[0]->setFreelancer($freelancer);
+                    $mark[0]->setJobowner($Jobowner);
+                    $em->persist($mark[0]);
+                    $em->flush();
+                }
+                 $rating = $request->get('rating');
+
+            return $this->render('projects/show.html.twig', array(
+                'project' => $project,
+                'mark' => $rating,
+                'jobowner_evaluation_form' => $jobowner_evaluation_form->createView(),
+                'examen'=>$examen,
+                'test' => $nb,
+                'free'=>$freelancer,
+                'delete_form' => $deleteForm->createView()
         ));
+
+        }
+
+
+         return $this->render('projects/show.html.twig', array(
+            'project' => $project,
+            'mark' => $rating,
+            'jobowner_evaluation_form' => $jobowner_evaluation_form->createView(),
+            'examen'=>$examen,
+            'test' => $nb,
+            'free'=>$freelancer,
+            'delete_form' => $deleteForm->createView()
+        ));
+
     }
 
     /**

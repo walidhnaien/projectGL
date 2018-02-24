@@ -13,7 +13,7 @@ class JoevaluationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('mark')->add('freelancer')->add('jobowner');
+       // $builder->add('mark')->add('freelancer')->add('jobowner');
     }/**
      * {@inheritdoc}
      */
